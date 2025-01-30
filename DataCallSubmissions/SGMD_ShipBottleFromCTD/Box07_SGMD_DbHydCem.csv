@@ -1,0 +1,16 @@
+Box Name: 07 Ork-Uts-nocc
+Data Source: SGMD
+Data Contact: Bee Berx (barbara.berx@gov.scot); Berit Rabe (berit.rabe@gov.scot)
+Comment/Note (incl. method description): HydCem Database Extraction - everything in polygon described by boundaries; only data from _db.hyd (CTD-based standard depths)
+Cruise ID / Site ID,Station Name,Year,Month,Day,Hour,Minute,Dec Lat,Dec Lon,Sounding,Pressure,Temp,Temp Flag,Sal,Sal Flag
+LR199609,  31,1996,06,24,17,13,  58.9943,   5.0197, 240,   0,    9.400,  1,   33.095,  1
+LR199609,  31,1996,06,24,17,13,  58.9943,   5.0197, 240,  10,    9.250,  1,   33.265,  1
+LR199609,  31,1996,06,24,17,13,  58.9943,   5.0197, 240,  20,    8.730,  1,   33.836,  1
+LR199609,  31,1996,06,24,17,13,  58.9943,   5.0197, 240,  30,    7.910,  1,   34.144,  1
+LR199609,  31,1996,06,24,17,13,  58.9943,   5.0197, 240,  40,    7.200,  1,   34.479,  1
+LR199609,  31,1996,06,24,17,13,  58.9943,   5.0197, 240,  50,    6.990,  1,   34.712,  1
+LR199609,  31,1996,06,24,17,13,  58.9943,   5.0197, 240,  75,    6.940,  1,   34.905,  1
+LR199609,  31,1996,06,24,17,13,  58.9943,   5.0197, 240, 100,    6.830,  1,   34.945,  1
+LR199609,  31,1996,06,24,17,13,  58.9943,   5.0197, 240, 125,    6.800,  1,   34.994,  1
+LR199609,  31,1996,06,24,17,13,  58.9943,   5.0197, 240, 150,    6.560,  1,   35.006,  1
+LR199609,  31,1996,06,24,17,13,  58.9943,   5.0197, 240, 157,    6.570,  1,   35.016,  1
