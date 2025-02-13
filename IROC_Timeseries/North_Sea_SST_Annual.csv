@@ -1,0 +1,62 @@
+Station Description:,North Sea SST,,
+Region:,North Sea,,
+Latitude:,55.99 N,,
+Longitude:,3.201 E,,
+Measurement Depth/Range:,Surface,,
+Long Term Averaging Period:,1991-2020,,
+Long Term Mean:,10.52,,
+Standard Deviation:,0.45,,
+Area:,"POLYGON((-3.95 51.17, 10.36 51.17, 10.36 60.81, -3.95 60.81, -3.95 51.17))",,
+Spatial Coverage:,Data is collected from variable number of stations within a fixed area.
+Vertical Coverage:,Data is averaged from 0 - 5 m.
+Temporal Coveraged:,Merged data hourly to weekly (in-situ and remote sensing).
+Seasonal Cycle:,Seasonal cycle has not been removed.
+Annual Calculations:,The annual calculation is an annual mean, calculated from monthly values.
+Reference:,Loewe, P. (Ed.), G. Becker, U. Brockmann, A. Frohse, K. Herklotz, H. Klein, A. Schulz, 2003: Nordsee und Deutsche Bucht 2002. Ozeanographischer Zustandsbericht. Berichte des Bundesamtes für Seeschifffahrt und Hydrographie, Nr. 33, 89pp.
+Notes:,https://www.bsh.de/EN/DATA/Climate-and-Sea/Sea_temperatures/Sea_surface_temperatures/sea_surface_temperatures_node.html
+Data Source:,BSH - German Federal Maritime and Hydrographic Agency,,
+Contact Name (email):,Dagmar Kieke (dagmar.kieke@bsh.de),Tim Kruschke (tim.kruschke@bsh.de),
+Location of source datasets:,BSH - German Federal Maritime and Hydrographic Agency,,
+Data Protection:,Include on ICES website.,,
+Year,Temperature °C,Temperature Anomaly °C,Temperature Anomaly Normalised °C
+1981,9.46,-1.06,-2.35
+1982,9.83,-0.69,-1.54
+1983,9.84,-0.68,-1.50
+1984,9.78,-0.74,-1.65
+1985,9.37,-1.15,-2.55
+1986,9.16,-1.36,-3.02
+1987,9.33,-1.19,-2.64
+1988,10.21,-0.31,-0.70
+1989,10.68,0.16,0.36
+1990,10.71,0.19,0.43
+1991,10.02,-0.50,-1.10
+1992,10.32,-0.20,-0.45
+1993,9.58,-0.94,-2.09
+1994,10.07,-0.45,-1.00
+1995,10.50,-0.02,-0.04
+1996,9.34,-1.18,-2.62
+1997,10.52,-0.00,-0.01
+1998,10.27,-0.25,-0.56
+1999,10.69,0.17,0.39
+2000,10.40,-0.12,-0.27
+2001,10.44,-0.08,-0.19
+2002,10.94,0.42,0.93
+2003,11.00,0.48,1.07
+2004,10.73,0.21,0.47
+2005,10.52,0.00,0.00
+2006,10.96,0.44,0.97
+2007,10.90,0.38,0.86
+2008,10.75,0.23,0.52
+2009,10.64,0.12,0.26
+2010,9.95,-0.57,-1.28
+2011,10.38,-0.14,-0.31
+2012,10.36,-0.16,-0.36
+2013,9.99,-0.53,-1.19
+2014,11.44,0.92,2.04
+2015,10.59,0.07,0.16
+2016,10.99,0.47,1.04
+2017,10.84,0.32,0.71
+2018,10.68,0.16,0.36
+2019,10.83,0.31,0.69
+2020,10.96,0.44,0.98
+2021,10.64,0.12,0.27

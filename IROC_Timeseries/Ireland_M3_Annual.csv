@@ -1,0 +1,35 @@
+Index:,13,,
+Station Description:,M3 Marine Weather Buoy,,
+Region:,Celtic Seas,,
+Latitude:,51.22 N,,,
+Longitude:,10.55 W,,,
+Measurement Depth/Range:,Surface,,
+Long Term Averaging Period:,2003-2020,,
+Long Term Mean:,13.06,,
+Standard Deviation:,0.24,,
+Averaging method:,Data T is annual mean anomalies calculated by subtracting long term mean from annual mean,,
+Notes:,,,
+Data Source:,Marine Institute Ireland,,
+Contact Name (email):,Kieran Lyons (kieran.lyons@marine.ie),,
+Location of source datasets:,Marine Institute Ireland,,
+Data Protection:,Include on ICES website for free distribution. ,,
+Year,Temperature °C,Temperature Anomaly °C,Temperature Anomaly Normalised °C
+2003,13.42,0.36,1.50
+2004,13.04,-0.02,-0.06
+2005,13.14,0.08,0.35
+2006,13.11,0.05,0.22
+2007,13.38,0.32,1.33
+2008,12.82,-0.24,-0.97
+2009,12.76,-0.30,-1.22
+2010,13.06,0.00,0.02
+2011,12.72,-0.34,-1.38
+2012,12.17,-0.89,-3.64
+2013,,,
+2014,13.55,0.49,2.03
+2015,12.77,-0.29,-1.17
+2016,13.12,0.06,0.27
+2017,13.08,0.02,0.10
+2018,13.13,0.07,0.31
+2019,12.96,-0.10,-0.39
+2020,12.78,-0.28,-1.13
+2021,13.00,-0.06,-0.23
