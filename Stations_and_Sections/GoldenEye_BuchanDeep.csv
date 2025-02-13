@@ -1,0 +1,3 @@
+Station Number,Station Name,Degrees Latitude,Minutes Latitude,Hemisphere Latitude,Degrees Longitude,Minutes Longitude,Hemisphere Longitude,Decimal Degrees Latitude,Decimal Degrees Longitude,Depth,Distance,Priority,Full Sampling Codes,Reduced Sampling Codes
+1,GoldenEye,58,0.300,N,0,21.960,W,58.0050,-0.3660,123,,1,"S, N, T, O, CH, DS","S, N, T, O, CH, DS"
+101,Buchan Deep,57,31.00,N,0,21.00,W,57.5167,-0.3500,,,,,
