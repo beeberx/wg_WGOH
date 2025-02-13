@@ -5,7 +5,7 @@ Station Number,Station Name,Degrees Latitude,Minutes Latitude,Hemisphere Latitud
 4,NSea_Inflow,59,0,N,1,0,E,59,1,
 5,Utsire-A,59,0,N,0,30,E,59,0.5,
 6,Utsire-B,59,0,N,4,0,E,59,4,
-7,West_Gabbard,59,57.3,N,2,6.9,E,59.955,2.115,
+7,West_Gabbard,51,57.3,N,2,6.9,E,51.955,2.115,
 8,Helgoland_Roads,54,10.998,N,7,54,E,54.1833,7.9,
 9,NSea_SST,55,59.4,N,3,12.06,E,55.99,3.201,
 10,38a_Mooring,53,46.9806,N,5,37.5144,W,53.78301,-5.62524,
