@@ -15,7 +15,7 @@ LEGH = [];
 LEGT = {};
 
 figure(1);clf;
-m_proj('mercator','lat',[50 65],'long',[-22 10]);
+m_proj('mercator','lat',[46 65],'long',[-22 10]);
 m_elev('contour',[-5000,-1000,-500,-200,-100,-50,-25],'edgecolor',[240,237,233]/255)
 m_gshhs_i('patch', [240,237,233]/255,'edgecolor',[0 0 0]/255);
 hold on
