@@ -1,4 +1,4 @@
-Station Description:,North Sea Utsire A,,,,,
+Station Description:,North Sea Utsira A,,,,,
 Region:,8&9,,,,,
 Latitude:,59 N,,,,,
 Longitude:,0.5 E,,,,,
@@ -9,10 +9,10 @@ Standard Deviation:,0.51,0.068,,,,
 Averaging Method:,,,,,,
 Notes:,Nearbed temperature minimum and salinity at northwestern part of the north sea.,,,,,
 Data Source:,IMR - Institute of Marine Research - Norway,,,,,
-Contact Name (email):,Jon Albretsen (jon.albretsen@imr.no),,,,,
+Contact Name (email):,Jon Albretsen (jon.albretsen@hi.no),,,,,
 Location of source datasets:,IMR - Institute of Marine Research - Norway,,,,,
 Data Protection:,Include on ICES website for free distribution.,,,,,
-Year,Temperature °C,Temperature Anomaly °C,Temperature Anomaly Normalised °C,Salinity,Salinity Anomaly,Salinity Anomaly Normalised
+Year,Temperature Â°C,Temperature Anomaly Â°C,Temperature Anomaly Normalised Â°C,Salinity,Salinity Anomaly,Salinity Anomaly Normalised
 1970,5.90,-1.01,-1.98,35.230,0.007,0.096
 1971,6.70,-0.21,-0.41,35.250,0.027,0.391
 1972,6.75,-0.16,-0.31,35.280,0.057,0.834
@@ -65,3 +65,6 @@ Year,Temperature °C,Temperature Anomaly °C,Temperature Anomaly Normalised °C,Sal
 2019,7.45,0.54,1.06,35.160,-0.063,-0.937
 2020,7.43,0.52,1.02,35.139,-0.084,-1.247
 2021,6.84,-0.07,-0.13,35.028,-0.195,-2.885
+2022,7.12,0.21,0.42,35.151,-0.072,-1.070
+2023,7.44,0.53,1.05,35.144,-0.079,-1.173
+2024,7.01,0.10,0.19,35.148,-0.075,-1.114
