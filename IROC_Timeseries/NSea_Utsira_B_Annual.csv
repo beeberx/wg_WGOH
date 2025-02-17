@@ -1,4 +1,4 @@
-Station Description:,North Sea Utsire B,,,,,
+Station Description:,North Sea Utsira B,,,,,
 Region:,8&9,,,,,
 Latitude:,59 N,,,,,
 Longitude:,4 E,,,,,
@@ -9,10 +9,10 @@ Standard Deviation:,0.57,0.048,,,,
 Averaging Method:,,,,,,
 Notes:,High salinity core of Atlantic Water at western edge of Norwegian Trench.,,,,,
 Data Source:,IMR - Institute of Marine Research - Norway,,,,,
-Contact Name (email):,Jon Albretsen (jon.albretsen@imr.no),,,,,
+Contact Name (email):,Jon Albretsen (jon.albretsen@hi.no),,,,,
 Location of source datasets:,IMR - Institute of Marine Research - Norway,,,,,
 Data Protection:,Include on ICES website for free distribution.,,,,,
-Year,Temperature °C,Temperature Anomaly °C,Temperature Anomaly Normalised °C,Salinity,Salinity Anomaly,Salinity Anomaly Normalised
+Year,Temperature Â°C,Temperature Anomaly Â°C,Temperature Anomaly Normalised Â°C,Salinity,Salinity Anomaly,Salinity Anomaly Normalised
 1970,7.30,-1.04,-1.82,35.300,-0.032,-0.657
 1971,8.15,-0.19,-0.33,35.345,0.013,0.271
 1972,7.95,-0.39,-0.68,35.200,-0.132,-2.719
@@ -65,3 +65,6 @@ Year,Temperature °C,Temperature Anomaly °C,Temperature Anomaly Normalised °C,Sal
 2019,8.92,0.58,1.02,35.298,-0.034,-0.698
 2020,8.06,-0.28,-0.48,35.274,-0.058,-1.193
 2021,8.52,0.18,0.31,35.295,-0.037,-0.760
+2022,8.38,0.05,0.08,35.299,-0.033,-0.678
+2023,8.83,0.49,0.85,35.290,-0.042,-0.863
+2024,8.72,0.38,0.67,35.357,0.025,0.518
