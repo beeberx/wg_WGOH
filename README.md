@@ -2,7 +2,7 @@
 GitHub repository for the ICES WGOH North West European Shelf region group. Overview of contents below. 
 
 ## Code
-Folder with useful code
+Folder with useful code, presently with focus on Matlab
 
 ## DataCallSubmissions
 Folder with data submissions in the defined boxes (see BoxDefs_NWES.csv)
