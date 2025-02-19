@@ -3,13 +3,13 @@ Region:,8&9,,
 Latitude:,59 N,,
 Longitude:,1 E,,
 Measurement Depth/Range:,Depth Averaged,,
-Long Term Averaging Period:,1985-2010,,
+Long Term Averaging Period:,1991-2020,,
 Long Term Mean:,-1.2020,1.5224,0.3205
 Standard Deviation:,0.1149,0.1371,0.0310
 Averaging method:,Annual Mean Modelled Volume Transport between Orkney - Scotland and Utsira - Norway ,,
 Notes:,Modelled Volume Transport between Orkney - Scotland and Utsira - Norway (-Inflow is flow in a southwards direction. +Outflow is flow in a northward direction, +NetFlow is flow in a northward direction) Units Svedrup 10^6m^3/s,
 Data Source:,IMR - Institute of Marine Research - Norway,,
-Contact Name (email):,Jon Albretsen (jon.albretsen@imr.no),,
+Contact Name (email):,Jon Albretsen (jon.albretsen@hi.no),,
 Location of source datasets:,IMR - Institute of Marine Research - Norway,,
 Data Protection:,Include on ICES website for free distribution.,,
 Year,Inflow (Sv),Outflow (Sv),Net Flow (Sv)
@@ -50,3 +50,6 @@ Year,Inflow (Sv),Outflow (Sv),Net Flow (Sv)
 2019,-1.044,1.336,0.292
 2020,-1.267,1.567,0.301
 2021,-1.079,1.349,0.270
+2022,-1.236,1.516,0.279
+2023,-1.054,1.336,0.282
+2024,-1.150,1.442,0.292
