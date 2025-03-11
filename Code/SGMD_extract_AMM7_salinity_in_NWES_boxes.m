@@ -85,11 +85,13 @@ for bb=1:size(box_defs,1)
     fprintf(fileID_out,'%s\n',['Cruise ID / Site ID,Station Name,Year,Month,Day,Hour,Minute,Dec Lat,Dec Lon,Sounding,Pressure,Temp,Temp Flag,Sal,Sal Flag']);
     for dd=1:size(time_dd,1)
         for hh=1:size(box_avg_salinity,1)
+            if ~isnan(box_avg_salinity(hh,bb,dd))
             fprintf(fileID_out,'%s,',NaN);
             fprintf(fileID_out,'%4d,',NaN);
-            fprintf(fileID_out,'%04d,%02d,%02d,%02d,%02d,',time_dd(dd,[3,2,1,4,5]));
-            fprintf(fileID_out,'%9.4f,%9.4f,%4d,%4d,',[NaN,NaN,NaN,NaN]);
-            fprintf(fileID_out,'%9.3f,%3d,%9.3f,%3d\n',[NaN,double(depth(hh)),box_avg_salinity(hh,bb,dd),8]);
+            fprintf(fileID_out,'%04d,%02d,%02d,%02d,%02d,',time_dd(dd,[1,2,3,4,5]));
+            fprintf(fileID_out,'%9.4f,%9.4f,%4d,%4d,',[NaN,NaN,NaN,double(depth(hh))]);
+            fprintf(fileID_out,'%9.3f,%3d,%9.3f,%3d\n',[NaN,9,box_avg_salinity(hh,bb,dd),8]);
+            end
         end
     end
     fclose(fileID_out);
