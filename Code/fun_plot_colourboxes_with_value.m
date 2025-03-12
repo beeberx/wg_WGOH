@@ -24,11 +24,13 @@ ylabel(h,['Standardised Anomalies'])
 [rr,cc]=size(Zdata);
 for ir = 1:rr
     for ic = 1:cc
-        if isnan(Zdata2(ir,ic))
+        if isnan(Zdata(ir,ic))
             patch(Xdata(ic)+[-0.5,0.5,0.5,-0.5,-0.5],Ydata(ir)+[-0.5,-0.5,0.5,0.5,-0.5],'w','edgecolor',[.2 .2 .2])
         else
+            if ~isnan(Zdata2(ir,ic))
             text(ax1,Xdata(ic),Ydata(ir),sprintf('%5.3f',Zdata2(ir,ic)),...
                 'verticalalignment','middle','horizontalalignment','center','color','k','fontsize',12,'rotation',0)
+            end
         end
     end
 end
