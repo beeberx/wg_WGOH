@@ -37,18 +37,11 @@ for yy=1:size(time_yy,1)
     box_std_temperature_annual(:,yy)=std(box_avg_temp_monthly(:,idxy),[],2);
 end
 % method 1: annual anomaly is mean of anomalies in year
-% for yy=1:size(time_yy,1)
-%     box_avg_salanom_annual(:,:,yy)=mean(box_avg_salanom(:,:,idxy),3);
-%     box_avg_salnormanom_annual(:,:,yy)=mean(box_avg_salnormanom(:,:,idxy),3);
-%     box_avg_tempanom_annual(:,:,yy)=mean(box_avg_tempanom(:,:,idxy),3);
-%     box_avg_tempnormanom_annual(:,:,yy)=mean(box_avg_tempnormanom(:,:,idxy),3);
-% end
+% [box_avg_tempanom_annual,box_avg_tempnormanom_annual]=...
+%   fun_calc_annual_anomalies_method1(time_mm,box_avg_tempanom,box_avg_tempnormanom,time_yy);
 % method 2: annual anomaly is annual mean rel to clim period mean and std
-idxclim = intersect(find(time_yy(:,1)>=1991),find(time_yy(:,1)<=2020));
-box_avg_tempclim_annual=mean(box_avg_temp_monthly_annual(:,idxclim),2);
-box_std_tempclim_annual=std(box_avg_temp_monthly_annual(:,idxclim),[],2);
-box_avg_tempanom_annual=box_avg_temp_monthly_annual - repmat(box_avg_tempclim_annual,1,size(box_avg_temp_monthly_annual,2));
-box_avg_tempnormanom_annual=box_avg_tempanom_annual ./ repmat(box_std_tempclim_annual,1,size(box_avg_temp_monthly_annual,2));
+[box_avg_tempanom_annual,box_avg_tempnormanom_annual]=...
+  fun_calc_annual_anomalies_method2(time_yy,box_avg_temp_monthly_annual,[1991 2020]);
 
 %% temperature figures
 Year(:,1) = time_yy(:,1);
@@ -61,12 +54,12 @@ for bb=1:size(box_avg_tempnormanom_annual,1)
         squeeze(box_avg_tempnormanom_annual(bb,:)))';
 end
 
-idxtemp=[1:size(box_avg_tempnormanom_annual,1)];
+idxtemp = fun_NWES_box_order_flow;%idxtemp=[1:size(box_avg_tempnormanom_annual,1)];
 
 ylen=31;
 figh1 = fun_plot_colourboxes([Year(end-ylen):1:Year(end)],[1:1:length(idxtemp)],...
     squeeze(Data(end-ylen:end,6,idxtemp))',...
-    box_defs{:,'Alias'},rbc,'Ocean Temperature')
+    box_defs{idxtemp,'Alias'},rbc,'Ocean Temperature')
 
 set(figh1,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...
     'paperunits','centimeters','paperposition',[0.6 0.6 28.4 19.7])
@@ -75,7 +68,7 @@ print(figh1, '-dpng', '-r300', 'OISST_Tmonthly_NWESboxes_all-years.png')
 ylen=9;
 figh2 = fun_plot_colourboxes_with_value([Year(end-ylen):1:Year(end)],[1:1:length(idxtemp)],...
     squeeze(Data(end-ylen:end,6,idxtemp))',round(squeeze(Data(end-ylen:end,4,idxtemp))'*100)/100,...
-    box_defs{:,'Alias'},rbc,'Ocean Temperature')
+    box_defs{idxtemp,'Alias'},rbc,'Ocean Temperature')
 
 set(figh2,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...
     'paperunits','centimeters','paperposition',[0.6 0.6 28.4 19.7])
@@ -84,7 +77,7 @@ print(figh2, '-dpng', '-r300', 'OISST_Tmonthly_NWESboxes_last10years_with_text.p
 ylen=9;
 figh2b = fun_plot_colourboxes([Year(end-ylen):1:Year(end)],[1:1:length(idxtemp)],...
     squeeze(Data(end-ylen:end,6,idxtemp))',...
-    box_defs{:,'Alias'},rbc,'Ocean Temperature')
+    box_defs{idxtemp,'Alias'},rbc,'Ocean Temperature')
 
 set(figh2b,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...
     'paperunits','centimeters','paperposition',[0.6 0.6 28.4 19.7])
@@ -104,7 +97,7 @@ end
 mlen=35;
 figh3 = fun_plot_colourboxes_with_value([XData(end-mlen):1:XData(end)],[1:1:length(idxtemp)],...
     squeeze(Data(end-mlen:end,6,idxtemp))',round(squeeze(Data(end-mlen:end,4,idxtemp))'*100)/100,...
-    box_defs{:,'Alias'},rbc,'Ocean Temperature')
+    box_defs{idxtemp,'Alias'},rbc,'Ocean Temperature')
 set(gca,'XTickLabel',datestr(datenum([time_mm(end-mlen:end,1),time_mm(end-mlen:end,2),1+0.*time_mm(end-mlen:end,1)]),'mm-yy'))
 
 set(figh3,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...
@@ -114,7 +107,7 @@ print(figh3, '-dpng', '-r300', 'OISST_Tmonthly_NWESboxeslast3years_with_text.png
 mlen=35;
 figh4 = fun_plot_colourboxes([XData(end-mlen):1:XData(end)],[1:1:length(idxtemp)],...
     squeeze(Data(end-mlen:end,6,idxtemp))',...
-    box_defs{:,'Alias'},rbc,'Ocean Temperature')
+    box_defs{idxtemp,'Alias'},rbc,'Ocean Temperature')
 set(gca,'XTickLabel',datestr(datenum([time_mm(end-mlen:end,1),time_mm(end-mlen:end,2),1+0.*time_mm(end-mlen:end,1)]),'mm-yy'))
 
 set(figh4,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...
@@ -124,7 +117,7 @@ print(figh4, '-dpng', '-r300', 'OISST_Tmonthly_NWESboxeslast3years.png')
 mlen=(5*12)-1;
 figh5 = fun_plot_colourboxes([XData(end-mlen):1:XData(end)],[1:1:length(idxtemp)],...
     squeeze(Data(end-mlen:end,6,idxtemp))',...
-    box_defs{:,'Alias'},rbc,'Ocean Temperature')
+    box_defs{idxtemp,'Alias'},rbc,'Ocean Temperature')
 set(gca,'XTickLabel',datestr(datenum([time_mm(end-mlen:end,1),time_mm(end-mlen:end,2),1+0.*time_mm(end-mlen:end,1)]),'mm-yy'))
 
 set(figh5,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...

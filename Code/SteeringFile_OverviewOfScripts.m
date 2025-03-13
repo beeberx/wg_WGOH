@@ -1,6 +1,6 @@
 %% Steering File Script to help understand the order in which scripts needs
 % to be done
-
+return
 %% make nice maps
 run plot_Basemap_NWES.m
 run MonitoringMap_with_boxes.m                          
