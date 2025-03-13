@@ -28,8 +28,13 @@ for ir = 1:rr
             patch(Xdata(ic)+[-0.5,0.5,0.5,-0.5,-0.5],Ydata(ir)+[-0.5,-0.5,0.5,0.5,-0.5],'w','edgecolor',[.2 .2 .2])
         else
             if ~isnan(Zdata2(ir,ic))
-            text(ax1,Xdata(ic),Ydata(ir),sprintf('%5.3f',Zdata2(ir,ic)),...
-                'verticalalignment','middle','horizontalalignment','center','color','k','fontsize',12,'rotation',0)
+                if Zdata2(ir,ic)-round(Zdata2(ir,ic).*100)/100 ==0
+                    text(ax1,Xdata(ic),Ydata(ir),sprintf('%5.2f',Zdata2(ir,ic)),...
+                        'verticalalignment','middle','horizontalalignment','center','color','k','fontsize',12,'rotation',0)
+                else
+                    text(ax1,Xdata(ic),Ydata(ir),sprintf('%5.3f',Zdata2(ir,ic)),...
+                        'verticalalignment','middle','horizontalalignment','center','color','k','fontsize',12,'rotation',0)
+                end
             end
         end
     end
