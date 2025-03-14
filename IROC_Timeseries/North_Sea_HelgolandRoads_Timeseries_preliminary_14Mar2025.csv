@@ -12,13 +12,13 @@ Vertical Coverage:,surface,,,,,
 Temporal Coverage:,original data is work-daily, weather permitting,,,,,
 Averaging Method:,Average of monthly means,,,,,
 Seasonal Cycle:,Seasonal cycle has not been removed.,,,,,
-"Reference:,""Wiltshire, K. H, et al. (2010), Helgoland roads, North Sea: 45 years of change. Estuaries and Coasts, 33, 295-310,https://doi.org/10.1007/s12237-009-9228-y"",,,,,"
-"Notes:,""Data processing (monthly means) by BSH (manuela.koellner@bsh.de). Data from the 1950s partly stem from various sources and stations nearby, merged with HR data via correlation analysis done by BSH"",,,,,"
-Data Source:,Alfred-Wegener-Institut (AWI) - Helmholtz-Zentrum für Polar- und Meeresforschung,,,,,
+Reference:,""Wiltshire, K. H, et al. (2010), Helgoland roads, North Sea: 45 years of change. Estuaries and Coasts, 33, 295-310,https://doi.org/10.1007/s12237-009-9228-y"",,,,,
+Notes:,""Data processing (monthly means) by BSH (manuela.koellner@bsh.de). Data from the 1950s partly stem from various sources and stations nearby, merged with HR data via correlation analysis done by BSH"",,,,,
+Data Source:,Alfred-Wegener-Institut (AWI) - Helmholtz-Zentrum fÃ¼r Polar- und Meeresforschung,,,,,
 Contact Name (email):,Inga Kirstein (inga.kirstein@awi.de),,,,,
-Location of source datasets:,Alfred-Wegener-Institut (AWI) - Helmholtz-Zentrum für Polar- und Meeresforschung,,,,,
+Location of source datasets:,Alfred-Wegener-Institut (AWI) - Helmholtz-Zentrum fÃ¼r Polar- und Meeresforschung,,,,,
 Data Protection:,Include on ICES website for free distribution.,,,,,
-Year,Temperature °C,Temperature Anomaly °C,Temperature Anomaly Normalised °C,Salinity,Salinity Anomaly,Salinity Anomaly Normalised
+Year,Temperature Â°C,Temperature Anomaly Â°C,Temperature Anomaly Normalised Â°C,Salinity,Salinity Anomaly,Salinity Anomaly Normalised
 1950,10.30,-0.38,-0.57,32.796,0.409,1.000
 1951,9.71,-0.97,-1.46,32.691,0.304,0.745
 1952,9.50,-1.18,-1.77,32.025,-0.362,-0.886
