@@ -11,3 +11,6 @@ Station Number,Station Name,Degrees Latitude,Minutes Latitude,Hemisphere Latitud
 10,38a_Mooring,53,46.9806,N,5,37.5144,W,53.78301,-5.62524,
 11,Malin,55,22.2,N,7,20.4,W,55.37,-7.34,
 12,M3,51,13.2,N,10,33,W,51.22,-10.55,
+13,Central_Skagerrak_Sfc,58,8,N,9,11,E,58.1333,9.1833,
+13,Central_Skagerrak_Deep,57,56,N,9,27,E,57.9333,9.45,
+14,Central_Skagerrak_Bottom,58,8,N,9,11,E,58.1333,9.1833,
