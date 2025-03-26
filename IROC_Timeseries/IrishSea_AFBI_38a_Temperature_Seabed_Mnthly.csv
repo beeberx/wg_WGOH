@@ -1,0 +1,40 @@
+Station Description:,38a Oceanographic Mooring,,,
+Region:,Celtic Seas,,,
+Latitude:,53.78301 N,,,
+Longitude:,5.62524 W,,,
+Measurement Depth/Range:,Seabed,,,
+Sampling Frequency:,3-hourly,,,
+Notes:,SBE56 sensor,,,
+Data Source:,AFBI Northern Ireland,,,
+Contact Name (email):,Billy Hunter (billy.hunter@afbini.gov.uk),,,
+Location of source datasets:,AFBI Northern Ireland,,,
+Data Protection:,Include on ICES website for free distribution.,,,
+Monthly Mean Statistics,,,,
+Long Term Averaging Period:,2003-2020,,,
+Month,Temperature °C,SD,Min,Max
+0.5,9.86314036,0.679952754,7.6,11.465
+1.5,8.730429545,0.512173523,7.625,10.56625
+2.5,8.186028842,0.497991402,7.13,9.3875
+3.5,8.124830588,0.477758096,7.1125,8.975
+4.5,8.458102443,0.567163505,7.1,9.82
+5.5,9.179968902,0.708575754,7.28,11.825
+6.5,10.34759474,0.714977467,8.1,12.1125
+7.5,11.76968446,0.771290281,9.4125,13.5375
+8.5,13.10838718,0.75560663,10.525,14.85
+9.5,13.69017456,0.473258895,12.27875,15.0125
+10.5,12.81616388,0.572965373,11.3,14.65
+11.5,11.24890402,0.649110956,9.5,12.8875
+Measured Data for year 2023,,,,
+Month,Temperature °C,,,
+0.5,10.65119355,,,
+1.5,9.604085089,,,
+2.5,9.005055469,,,
+3.5,8.909157269,,,
+4.5,9.281904435,,,
+5.5,9.946946667,,,
+6.5,11.44802984,,,
+7.5,12.28254355,,,
+8.5,13.07785708,,,
+9.5,14.680525,,,
+10.5,,,,
+11.5,,,,

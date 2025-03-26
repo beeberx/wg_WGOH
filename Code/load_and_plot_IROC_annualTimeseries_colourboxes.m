@@ -55,7 +55,7 @@ end; clear ff
 Year(:,1) = IROC_annual_time(:,1);
 
 % idxtemp=[1:size(IROC_annual_data,3)];
-idxtemp = [14,1:4,13,6,5,9,10,7,11,12];
+idxtemp = [13,1:4,12,6,5,9,10,7,11];
 
 ylen=31;
 figh1 = fun_plot_colourboxes([Year(end-ylen):1:Year(end)],[1:1:length(idxtemp)],...
@@ -68,7 +68,7 @@ print(figh1, '-dpng', '-r300', 'IROC_TimeSeries_Temperature_Last30years.png')
 
 ylen=9;
 figh2 = fun_plot_colourboxes_with_value([Year(end-ylen):1:Year(end)],[1:1:length(idxtemp)],...
-    squeeze(IROC_annual_data(end-ylen:end,3,idxtemp))',round(squeeze(IROC_annual_data(end-ylen:end,1,idxtemp))'*100)/100,...
+    squeeze(IROC_annual_data(end-ylen:end,3,idxtemp))',round(squeeze(IROC_annual_data(end-ylen:end,1,idxtemp))'*10)/10,...
     IROC_annual_name(idxtemp),rbc,'Ocean Temperature')
 
 set(figh2,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...
@@ -87,7 +87,7 @@ print(figh2b, '-dpng', '-r300', 'IROC_TimeSeries_Temperature_last10years.png')
 
 %% salinity figures
 %idxsal=[1:size(IROC_annual_data,3)];
-idxsal = [14,6,5,9,10,7,11,12];
+idxsal = [13,6,5,9,10,7,11];
 
 ylen=31;
 figh1 = fun_plot_colourboxes([Year(end-ylen):1:Year(end)],[1:1:length(idxsal)],...
@@ -100,7 +100,7 @@ print(figh1, '-dpng', '-r300', 'IROC_TimeSeries_Salinity_Last30years.png')
 
 ylen=9;
 figh2 = fun_plot_colourboxes_with_value([Year(end-ylen):1:Year(end)],[1:1:length(idxsal)],...
-    squeeze(IROC_annual_data(end-ylen:end,6,idxsal))',round(squeeze(IROC_annual_data(end-ylen:end,4,idxsal))'*1000)/1000,...
+    squeeze(IROC_annual_data(end-ylen:end,6,idxsal))',round(squeeze(IROC_annual_data(end-ylen:end,4,idxsal))'*100)/100,...
     IROC_annual_name(idxsal),ogc,'Ocean Practical Salinity')
 
 set(figh2,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...
