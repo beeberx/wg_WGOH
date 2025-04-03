@@ -2,54 +2,68 @@ clear all;close all;clc
 
 IROC_datafolder = ['../IROC_Timeseries/'];
 
+% find a list of all the Annual files
 flist = ls([IROC_datafolder,'*Annual*']);
 
+% set the climatology period
 clim_ref_period = [1991 2020];
 
-box_defs = readtable('../BoxDefs_NWES.csv');
-
-%define colormap
-%define colormap
+%define colormaps
+% Blue-Red rbc
 tmp= cbrewer('div','PiYG',3);
-%tmp= cbrewer('div','RdYlBu',3);
-%rbc= cbrewer('div','RdYlBu',13);
 rbc = cat(1,flipud(cbrewer('seq','Blues',6)),tmp(2,:),tmp(2,:),cbrewer('seq','Reds',6));
 rbc(rbc>1)=1;rbc(rbc<0)=0;
 clear tmp
 
+% Green-Pink pgc
 tmp= cbrewer('div','PiYG',3);
-ogc = cat(1,flipud(cbrewer('seq','Greens',6)),tmp(2,:),tmp(2,:),cbrewer('seq','RdPu',6));
-ogc(ogc>1)=1;ogc(ogc<0)=0;
+pgc = cat(1,flipud(cbrewer('seq','Greens',6)),tmp(2,:),tmp(2,:),cbrewer('seq','RdPu',6));
+pgc(pgc>1)=1;pgc(pgc<0)=0;
 clear tmp
 
+% create empty variables to load in annual time series
 IROC_annual_time = [1890:1:2024]';
 IROC_annual_data = NaN.*zeros(size(IROC_annual_time,1),6,size(flist,1));
 IROC_annual_name(1:size(flist,1),1) = {' '};
-%% consolidate time series (in order listed in directorary)
+
+% consolidate time series (in order listed in directory)
 for ff=1:size(flist,1)
     data_filename = flist(ff,:);
     data_sitename = data_filename(1:regexpi(data_filename,'_Annual')-1);
     IROC_annual_name{ff} = strrep(data_sitename,'_',' ');
-    if regexpi(data_filename,'Inflow');continue;end
-    NumHeadLines = 0;bline = '';
+    if ~isempty(regexpi(IROC_annual_name{ff},'inflow')) | ~isempty(regexpi(IROC_annual_name{ff},'ice'))
+        continue
+    end
+    NumHeadLines = 0;bline = repmat(' ',1,15);
     fid = fopen([IROC_datafolder,data_filename]);
-    while ~strncmpi(bline,'year',4)
+%     while ~strncmpi(bline,'year',4)
+    while isempty(regexpi(bline,'year'))
         bline = fgetl(fid);
+        if length(bline)>15
+            bline = bline(1:15);
+        end
         NumHeadLines = NumHeadLines +1;
     end
     fid = fclose(fid);clear fid bline
     data = readtable([IROC_datafolder,data_filename],'NumHeaderLines',NumHeadLines-1);
-    [~,idxT,idxI] = intersect(data{:,"Year"},IROC_annual_time);
+    [~,idxT,idxI] = intersect(data{:,1},IROC_annual_time);
+    %switch for those time series with incorrect header structure
     switch size(data,2)
         case 7
             IROC_annual_data(idxI,:,ff) = data{idxT,2:end};
+        case 10
+            IROC_annual_data(idxI,:,ff) = data{idxT,2:7};
         case 4
             IROC_annual_data(idxI,1:3,ff) = data{idxT,2:end};
+        case 5
+            IROC_annual_data(idxI,2:3,ff) = data{idxT,2:3};
+            IROC_annual_data(idxI,5:6,ff) = data{idxT,4:5};
         otherwise
             error('number columns not recognised in IROC dataset')
     end
     clear data idxT idxI NumHeadLines data_sitename data_filename
 end; clear ff
+
 
 %% temperature figures
 Year(:,1) = IROC_annual_time(:,1);
