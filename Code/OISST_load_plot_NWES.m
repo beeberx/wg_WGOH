@@ -89,6 +89,11 @@ for yy=1:length(selectyear)
     cmap = cat(1,flipud(cbrewer('seq','PuBu',10)),cbrewer('seq','YlOrRd',10));
     cmap(cmap>1)=1;cmap(cmap<0)=0;
 
+     tmp= cbrewer('div','PiYG',3);
+    amap = cat(1,flipud(cbrewer('seq','Blues',6)),tmp(2,:),tmp(2,:),cbrewer('seq','Reds',6));
+    amap(amap>1)=1;amap(amap<0)=0;
+    clear tmp
+
     pos12 = [0.02 0.68 0.225 0.3;0.255 0.68 0.225 0.3;0.49 0.68 0.225 0.3;0.725 0.68 0.225 0.3;...
         0.02 0.36 0.225 0.3;0.255 0.36 0.225 0.3;0.49 0.36 0.225 0.3;0.725 0.36 0.225 0.3;...
         0.02 0.04 0.225 0.3;0.255 0.04 0.225 0.3;0.49 0.04 0.225 0.3;0.725 0.04 0.225 0.3];
@@ -123,7 +128,7 @@ for yy=1:length(selectyear)
             [hc]=colorbar(ax,'eastoutside');%([.05 .9],.05,CS,CH,'endpiece','no','axfrac',.025,'levels','set','fontsize',10,'fontname','arial');
             set(hc,'ytick',[-2.5:0.5:2.5],'yticklabel',sprintf('% -3.1f\n',[-2.5:0.5:2.5]'))%,'yticklabelrotation',0,'ticklength',[0.01     0.05])
             title(hc,'^o C','fontsize',10,'fontname','arial')
-            set(hc,'position',[0.955 0.06 0.015 0.90])
+            set(hc,'position',[0.96 0.06 0.015 0.90])
         end
         if ~ismember(mm,[9,10,11,12])
             set(ax,'xticklabel',[])
@@ -158,15 +163,16 @@ for yy=1:length(selectyear)
         pcolor(lon2plot,lat2plot,heat2plot');shading flat;
         ax = gca;
 
-        caxis([-5 5])
-        colormap(cmap(:,:))
+        caxis([-3.5 3.5])
+        colormap(amap(:,:))
         NWES_IROC_fun_coastGLOB
         set(ax,'position',pos12(mm,:));
         if ismember(mm,[1])
             [hc]=colorbar(ax,'eastoutside');%([.05 .9],.05,CS,CH,'endpiece','no','axfrac',.025,'levels','set','fontsize',10,'fontname','arial');
-            set(hc,'ytick',[-5:1:5],'yticklabel',sprintf('% -3.1f\n',[-5:1:5]'))%,'yticklabelrotation',0,'ticklength',[0.01     0.05])
+            [hc]=colorbar(ax,'eastoutside');%([.05 .9],.05,CS,CH,'endpiece','no','axfrac',.025,'levels','set','fontsize',10,'fontname','arial');
+            set(hc,'ytick',[-3.5:0.5:3.5],'yticklabel',sprintf('% -3.1f\n',[-3.5:0.5:3.5]'))%,'yticklabelrotation',0,'ticklength',[0.01     0.05])
             title(hc,{'St. Dev.','Units'},'fontsize',10,'fontname','arial')
-            set(hc,'position',[0.965 0.06 0.01 0.875])
+            set(hc,'position',[0.97 0.06 0.007 0.875])
         end
         if ~ismember(mm,[9,10,11,12])
             set(ax,'xticklabel',[])
