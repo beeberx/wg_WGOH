@@ -1,4 +1,4 @@
-Station Description:,Malin Head Weather Station
+﻿Station Description:,Malin Head Weather Station
 Region:,Celtic Seas
 Latitude:,55.37 N
 Longitude:,7.34 W
@@ -9,7 +9,7 @@ Data Source:,Marine Institute
 Contact Name (email):,Eoghan Daly (eoghan.daly@marine.ie)
 Location of source datasets:,Marine Institute
 Data Protection:,Include on ICES website for free distribution. 
-Decimal Year,Temperature °C
+Decimal Year,Temperature Â°C
 2008.878415,10.895
 2008.881148,10.915
 2008.88388,10.698
