@@ -22,7 +22,8 @@ timeseries_files = {'Plymouth_WCO_E1_Annual.csv';
     'North_Sea_HelgolandRoads_Annual.csv';
     'NSea_FerryWestGab_Annual.csv';
     'NSea_Utsira_B_Annual.csv';
-    'NSea_Utsira_A_Annual.csv'%;
+    'NSea_Utsira_A_Annual.csv';
+    'Skagerrak_0-10_Surface-water_Annual.csv'%;
     %'NSea_CooledAtlantic_Annual-TMP-2025-02-26.csv';
     %'NSea_FairIsle_Annual-TMP-2025-02-26.csv'
     }
@@ -30,13 +31,14 @@ timeseries_files = {'Plymouth_WCO_E1_Annual.csv';
 timeseries_names = {'Western Channel Observatory';
     'Helgoland Roads';
     'Ferry - West Gabbard';
-    'AW Norwegian Trench';
-    'Nearbed NW North Sea'%;
+    'AW Norwegian Trench (Uts.B)';
+    'Nearbed NW North Sea (Uts.A)';
+    'Central Skaggerak'%;
     %'Cooled Atlantic Water';
     %'Fair Isle Current Water'
     }
 
-idxtemp = 1:5;
+idxtemp = [5,4,6,2,3,1];
 
 ylower = 1975;
 yhigher = last_year;
@@ -84,9 +86,8 @@ ymax = yhigher;
 
 close all
 for ss=1:size(timeseries_files,1);
-
     tmp = squeeze(Data_IROC(:,:,idxtemp(ss)));
-    tmp(sum(isnan(tmp),2)>0,:)=[];
+    tmp(sum(isnan(tmp(:,1:4)),2)>0,:)=[];
     xdata = tmp(:,1);%x axis
     tdata = tmp(:,2);% values
     adata = tmp(:,3);% anomalies
@@ -123,6 +124,7 @@ for ss=1:size(timeseries_files,1);
         text(ymax-0.5,t_ext-0.5,timeseries_names{idxtemp(ss)},'HorizontalAlignment','right',...
                 'color','r','FontWeight','bold')
     end
+    ylabel('SD units','fontsize',10)
     for yy=1:length(xdata)
         if isnan(ydata(yy)) || isnan(zdata(yy));continue;end
         h=bar(xdata(yy),ydata(yy),1.0);
@@ -136,7 +138,8 @@ for ss=1:size(timeseries_files,1);
     newyr=fstart:1:fend;
     newdat = loess_yr(xdata(~isnan(zdata)),zdata(~isnan(zdata)),newyr,5,1,1);
     %plot(ax(ss),newyr,newdat,'k','LineWidth',1.5);
-    plot(ax(ss), [ylower:1:yhigher],0.*[ylower:1:yhigher],'.-','MarkerSize',4,'Color',lgrey)
+    plot(ax(ss), [ylower:1:yhigher],0.*[ylower:1:yhigher],'+-','MarkerSize',5,'Color',lgrey)
+    %set(ax(ss),'layer','top')
 end
 cbounds =  -1*t_ext:0.5:t_ext+0.5;
 yytxt = 1.1;
@@ -166,7 +169,7 @@ end
 set(tx,'color','none','XColor','none','ycolor','none','xlim',[0.5 size(rbc,1)+0.5],'ylim',[0 6])
 
 for ss=1:size(timeseries_files,1)
-    set(ax(ss),'Position',pos_mat(abs(ss-(pnum+1)),:),'TickLength',[.002 .002]);
+    set(ax(ss),'Position',pos_mat(abs(ss-(pnum+1)),:),'TickLength',[.01 .005]);
 end
 
 fname_fig = ['templot_',datestr(now,'yyyymmdd'),...

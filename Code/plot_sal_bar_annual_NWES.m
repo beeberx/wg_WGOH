@@ -23,7 +23,8 @@ timeseries_files = {'Plymouth_WCO_E1_Annual.csv';
     'North_Sea_HelgolandRoads_Annual.csv';
     'NSea_FerryWestGab_Annual.csv';
     'NSea_Utsira_B_Annual.csv';
-    'NSea_Utsira_A_Annual.csv'%;
+    'NSea_Utsira_A_Annual.csv';
+    'Skagerrak_0-10_Surface-water_Annual.csv'%;
     %'NSea_CooledAtlantic_Annual-TMP-2025-02-26.csv';
     %'NSea_FairIsle_Annual-TMP-2025-02-26.csv'
     }
@@ -31,13 +32,14 @@ timeseries_files = {'Plymouth_WCO_E1_Annual.csv';
 timeseries_names = {'Western Channel Observatory';
     'Helgoland Roads';
     'Ferry - West Gabbard';
-    'AW Norwegian Trench';
-    'Nearbed NW North Sea'%;
+    'AW Norwegian Trench (Uts.B)';
+    'Nearbed NW North Sea (Uts.A)';
+    'Central Skaggerak'%;
     %'Cooled Atlantic Water';
     %'Fair Isle Current Water'
     }
 
-idxsal = 1:5;
+idxsal = [5,4,6,2,3,1];
 
 
 ylower = 1975;
@@ -88,7 +90,7 @@ close all
 for ss=1:size(timeseries_files,1);
 
     tmp = squeeze(Data_IROC(:,:,idxsal(ss)));
-    tmp(sum(isnan(tmp),2)>0,:)=[];
+    tmp(sum(isnan(tmp(:,[1,5,6,7])),2)>0,:)=[];
     xdata = tmp(:,1);%x axis
     tdata = tmp(:,5);% values
     adata = tmp(:,6);% anomalies
@@ -132,14 +134,15 @@ for ss=1:size(timeseries_files,1);
         ind=floor(zdata(yy)*2)+9;
         if (ind<1);ind=1; end
         if (ind>16);ind=16; end
-        set(h,'FaceColor',pgc(ind,:),'linestyle','none');
+        set(h,'FaceColor',pgc(ind,:),'linestyle','-','linewidth',0.5,'EdgeColor',lgrey);
     end
     fstart= min(xdata(~isnan(zdata)))+0.5;
     fend=max(xdata(~isnan(zdata)))+0.5;
     newyr=fstart:1:fend;
     newdat = loess_yr(xdata(~isnan(zdata)),zdata(~isnan(zdata)),newyr,5,1,1);
     %plot(ax(ss),newyr,newdat,'k','LineWidth',1.5);
-    plot(ax(ss), [ylower:1:yhigher],0.*[ylower:1:yhigher],'.-','MarkerSize',4,'Color',lgrey)
+    plot(ax(ss), [ylower:1:yhigher],0.*[ylower:1:yhigher],'+-','MarkerSize',5,'Color',lgrey)
+    %set(ax(ss),'layer','top')
 end
 cbounds =  -1*t_ext:0.5:t_ext+0.5;
 yytxt = 1.1;
