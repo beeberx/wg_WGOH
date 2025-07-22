@@ -38,7 +38,7 @@ ylabel(h,['Standardised Anomalies'])
 for ir = 1:rr
     for ic = 1:cc
         if isnan(Zdata(ir,ic))
-            patch(Xdata(ic)+[-0.5,0.5,0.5,-0.5,-0.5],Ydata(ir)+[-0.5,-0.5,0.5,0.5,-0.5],'w','edgecolor',[.2 .2 .2])
+            patch(Xdata(ic)+[-0.5,0.5,0.5,-0.5,-0.5],Ydata(ir)+[-0.5,-0.5,0.5,0.5,-0.5],'w','edgecolor',[.2 .2 .2],'facecolor',[.3 .3 .3])
         else
             if ~isnan(Zdata2(ir,ic))
                 switch dpfmt
