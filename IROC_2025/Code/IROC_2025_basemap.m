@@ -15,7 +15,7 @@ lat = ncread(fname,'lat',[idxlat(1)],[Inf],[istride]);
 clear idxlon idxlat
 %%
 load('H:\Working_Projects\ICES Working Group Oceanic Hydrography\GitHub_wg_WGOH\wg_WGOH\IROC_2025\RegionBoundaries\Code\IROC_2025_regions.mat')
-
+return
 %%
 close all
 

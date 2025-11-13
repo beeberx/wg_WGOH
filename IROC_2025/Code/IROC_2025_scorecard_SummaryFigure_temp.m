@@ -133,6 +133,24 @@ for ff=1:size(Data_IROC,3)
 end
 plot(Years_IROC,squeeze(Data_IROC(:,2,:)))
 
+IROC_TS_Labels = {'Fyllas Bank';
+    'NW Georges Bank';
+    'Gulf of St Lawrence';
+    'Newfoundland Shelf';
+    'Central Labrador Sea';
+    'Sub-polar Mode Water, Central Irminger Sea';
+    'Upper Waters, Iceland Basin';
+    'North Atlantic Water, Faroe-Shetland Channel';
+    'East Icelandic Current';
+    'Ocean Weather Ship Mike, Norwegian Sea';
+    'Helgoland Roads, North Sea';
+    'Surface Water, Skagerrak';
+    'North_Sea_HelgolandRoads_Annual.csv'    ;
+    'Baltic_BY15_Annual.csv'                 ;
+    'Biscay_Santander7_300-600_Timeseries.csv';
+    'Cadiz_STOCA-SP6_100_300_Timeseries.csv' ;
+    'CanaryBasinCTZ_200-800_Timeseries.csv'   }
+
 figh = fun_plot_colourboxes(Years_IROC,[1:size(Data_IROC,3)],squeeze(Data_IROC(:,4,:))',IROC_TS,rbc,'title')
 
 idx2plot = intersect(find(Years_IROC>=1971),find(Years_IROC<=2024));
