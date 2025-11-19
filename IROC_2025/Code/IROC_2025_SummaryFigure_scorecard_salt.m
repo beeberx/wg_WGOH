@@ -11,7 +11,7 @@ run IROC_2025_SummaryFigure_SelectedTimeseries.m
 run IROC_2025_LoadAnnualData.m
 
 %set colour schemes
-run IROC_2025_red_blue_colormap_convention.m
+run IROC_2025_pink_green_colormap_convention.m
 
 %light grey for bar outlines and x-axis at 0
 lgrey = [.7 .7 .7];
@@ -35,18 +35,18 @@ plot(Years_IROC,squeeze(Data_IROC(:,2,:)))
 
 
 idx2plot = intersect(find(Years_IROC>=1951),find(Years_IROC<=2024));
-AData = flipud(squeeze(Data_IROC(idx2plot,4,:))');
+AData = flipud(squeeze(Data_IROC(idx2plot,7,:))');
 
 figh = fun_plot_colourboxes(Years_IROC(idx2plot),[1:size(Data_IROC,3)],AData,...
-    flipud(IROC_TS_Codes),rbc,'')
+    flipud(IROC_TS_Codes),pgc,'')
 set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
-imwrite(F.cdata,['IROC_ScoreCard_T_',datestr(now,'yyyymmdd'),'.png'],'png')
+imwrite(F.cdata,['IROC_ScoreCard_S_',datestr(now,'yyyymmdd'),'.png'],'png')
 
 idx2plot = intersect(find(Years_IROC>=2005),find(Years_IROC<=2024));
 figh = fun_plot_colourboxes_with_value(Years_IROC(idx2plot),[1:size(Data_IROC,3)],...
-    flipud(squeeze(Data_IROC(idx2plot,4,:))'),flipud(squeeze(Data_IROC(idx2plot,4,:))'),flipud(IROC_TS_Codes),rbc,'')
+    flipud(squeeze(Data_IROC(idx2plot,7,:))'),flipud(squeeze(Data_IROC(idx2plot,7,:))'),flipud(IROC_TS_Codes),pgc,'')
 set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
-imwrite(F.cdata,['IROC_ScoreCard_T_with_values',datestr(now,'yyyymmdd'),'.png'],'png')
+imwrite(F.cdata,['IROC_ScoreCard_S_with_values',datestr(now,'yyyymmdd'),'.png'],'png')
 
