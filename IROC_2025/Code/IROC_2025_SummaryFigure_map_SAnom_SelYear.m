@@ -38,12 +38,13 @@ selcol = fun_lookup_anom_colour(squeeze(Data_IROC(selidx,7,:)),pgc,[-3.5 3.5]);
 %%
 close all
 clf
-m_proj('lambert','lon',[-105 70],'lat',[25 85]);hold on
+% m_proj('lambert','lon',[-105 70],'lat',[25 85]);hold on
+m_proj('lambert','lon',[-80 30],'lat',[20 85]);hold on
 
 m_coast('patch',[0.75 0.75 0.75],'edgecolor','k');
 m_nolakes([0.75 0.75 0.75],[0.75 0.75 0.75])
 
-m_grid('xtick',[60:-60:-120],'ytick',[30:15:85],'XaxisLocation','bottom','YaxisLocation','left');%,'box','fancy'
+m_grid('xtick',[-80,-60:30:30],'ytick',[20,30:15:75,85],'XaxisLocation','bottom','YaxisLocation','left','tickdir','out');%,'box','fancy'
 
 for ii=1:length(IROC_Longitudes)
     if isnan(selcol(ii));
@@ -57,9 +58,10 @@ end
 
 m_text(-17.5,87,sprintf('%4d',selyear),'fontsize',16,'fontweight','bold','horizontalalignment','center')
 
-fun_plot_collegend_anom(gcf,pgc)
+axl = fun_plot_collegend_anom(gcf,pgc);
+set(axl,'position',[0.1 0.05 0.8 0.03])
 
 set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
-imwrite(F.cdata,['IROC_2025_Map_SAnom_' sprintf('%4d',selyear),'.png'],'png')
+imwrite(F.cdata,['IROC_2025_Map_SAnom_' sprintf('%4d',selyear),'.png'],'png','XResolution',1200)
 %%

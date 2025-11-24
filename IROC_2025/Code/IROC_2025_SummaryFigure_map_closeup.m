@@ -58,7 +58,7 @@ m_coast('patch',[0.75 0.75 0.75],'edgecolor','k');
 m_nolakes([0.75 0.75 0.75],[0.75 0.75 0.75])
 
 % m_grid('linestyle','none','tickdir','out','linewidth',3);
-m_grid('xtick',[60:-60:-120],'ytick',[30:15:85],'XaxisLocation','bottom','YaxisLocation','left');%,'box','fancy'
+m_grid('xtick',[-80,-60:30:30],'ytick',[20,30:15:75,85],'XaxisLocation','bottom','YaxisLocation','left','tickdir','out');%,'box','fancy'
 
 for ii=1:length(IROC_Longitudes)
     %     m_text(IROC_Longitudes(ii),IROC_Latitudes(ii),IROC_TS_Codes{ii},...
@@ -106,5 +106,5 @@ end
 
 set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
-imwrite(F.cdata,'IROC_2025_Map_Timeseries_Positions_CloseUp.png','png')
+imwrite(F.cdata,'IROC_2025_Map_Timeseries_Positions_CloseUp.png','png','XResolution',1200)
 %%
