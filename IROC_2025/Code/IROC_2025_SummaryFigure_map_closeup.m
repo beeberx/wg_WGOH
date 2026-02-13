@@ -30,11 +30,11 @@ run IROC_2025_LoadAnnualData.m
 %%
 IROC_marker  = cell(length(IROC_TS),1);
 IROC_marker(:) = {'o'};
-IROC_marker([5,10,13]) = {'s'};
+IROC_marker([5,6,10,13]) = {'s'};
 %
 IROC_txtcol  = cell(length(IROC_TS),1);
 IROC_txtcol(:) = {'k'};
-IROC_txtcol([5,10,13]) = {'r'};
+IROC_txtcol([5,6,10,13]) = {'r'};
 
 %%
 close all
@@ -52,6 +52,16 @@ colormap([cmap_ocean]);
 hold on
 caxis([-10000 10])
 
+
+%region boundaries
+load('H:\Working_Projects\ICES Working Group Oceanic Hydrography\GitHub_wg_WGOH\wg_WGOH\IROC_2025\RegionBoundaries\Code\IROC_2025_regions.mat')
+for rr=1:7;
+    eval(['rdata = IROC_newregions.region' num2str(rr) ';']);
+    m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color',[.6 .6 .6])
+end
+
+
+
 % coldef_land = [0 0.3059 0.1059];
 % m_gshhs_i('patch',coldef_land,'edgecolor','none')
 m_coast('patch',[0.75 0.75 0.75],'edgecolor','k');
@@ -62,18 +72,18 @@ m_grid('xtick',[-80,-60:30:30],'ytick',[20,30:15:75,85],'XaxisLocation','bottom'
 
 for ii=1:length(IROC_Longitudes)
     %     m_text(IROC_Longitudes(ii),IROC_Latitudes(ii),IROC_TS_Codes{ii},...
-    %         'backgroundcolor','w','color','k','edgecolor','k','fontsize',12,...
+    %         'backgroundcolor','w','color','k','edgecolor','k','fontsize',14,...
     %         'horizontalalignment','center','verticalalignment','middle')
     switch IROC_marker{ii}
         case 'o'
             m_plot(IROC_Longitudes(ii),IROC_Latitudes(ii),...
-                'marker',IROC_marker{ii},'markersize',15,'markerfacecolor','w','markeredgecolor','k')
+                'marker',IROC_marker{ii},'markersize',19,'markerfacecolor','w','markeredgecolor','k')
         case 's'
             m_plot(IROC_Longitudes(ii),IROC_Latitudes(ii),...
-                'marker',IROC_marker{ii},'markersize',17,'markerfacecolor','w','markeredgecolor','k')
+                'marker',IROC_marker{ii},'markersize',21,'markerfacecolor','w','markeredgecolor','k')
     end
     m_text(IROC_Longitudes(ii),IROC_Latitudes(ii),num2str(ii),...
-        'color',IROC_txtcol{ii},'fontsize',10,...
+        'color',IROC_txtcol{ii},'fontsize',14,...
         'horizontalalignment','center','verticalalignment','middle')
 end
 
@@ -85,7 +95,7 @@ for ii=1:7;
     else
         txtlab = IROC_TS_Codes{ii};
     end
-    text(axTxt,0.2,0.9-3*(ii/100),[sprintf('%-2d',ii),': ',txtlab],'fontsize',12)
+    text(axTxt,0.2,0.9-3*(ii/100),[sprintf('%-2d',ii),': ',txtlab],'fontsize',16)
 end
 for ii=8:10;
     if ~isempty(regexpi(IROC_TS_Codes{ii},')'))
@@ -93,7 +103,7 @@ for ii=8:10;
     else
         txtlab = IROC_TS_Codes{ii};
     end
-    text(axTxt,0.6,0.25-3*((ii-7)/100),[sprintf('%-2d',ii),': ',txtlab],'fontsize',12)
+    text(axTxt,0.61,0.25-3*((ii-7)/100),[sprintf('%-2d',ii),': ',txtlab],'fontsize',16)
 end
 for ii=11:17;
     if ~isempty(regexpi(IROC_TS_Codes{ii},')'))
@@ -101,8 +111,9 @@ for ii=11:17;
     else
         txtlab = IROC_TS_Codes{ii};
     end
-    text(axTxt,0.725,0.9-3*((ii-10)/100),[sprintf('%-2d',ii),': ',txtlab],'fontsize',12)
+    text(axTxt,0.72,0.9-3*((ii-10)/100),[sprintf('%-2d',ii),': ',txtlab],'fontsize',16)
 end
+
 
 set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);

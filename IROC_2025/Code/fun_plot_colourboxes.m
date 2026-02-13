@@ -12,7 +12,7 @@ im= imagesc(ax1,Xdata,Ydata,Adata);im.AlphaData=0.8;
 for ir = 1:rr
     for ic = 1:cc
         if isnan(Adata(ir,ic))
-            patch(Xdata(ic)+[-0.5,0.5,0.5,-0.5,-0.5],Ydata(ir)+[-0.5,-0.5,0.5,0.5,-0.5],'w','edgecolor',[.2 .2 .2],'facecolor',[.3 .3 .3])
+            patch(Xdata(ic)+[-0.5,0.5,0.5,-0.5,-0.5],Ydata(ir)+[-0.5,-0.5,0.5,0.5,-0.5],'w','edgecolor',[.2 .2 .2],'facecolor',[.85 .85 .85])
         end
     end
 end

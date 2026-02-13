@@ -44,19 +44,26 @@ m_proj('lambert','lon',[-80 30],'lat',[20 85]);hold on
 m_coast('patch',[0.75 0.75 0.75],'edgecolor','k');
 m_nolakes([0.75 0.75 0.75],[0.75 0.75 0.75])
 
-m_grid('xtick',[-80,-60:30:30],'ytick',[20,30:15:75,85],'XaxisLocation','bottom','YaxisLocation','left','tickdir','out');%,'box','fancy'
+m_grid('xtick',[-80,-60:30:30],'ytick',[20,30:15:75,85],'XaxisLocation','bottom',...
+    'YaxisLocation','left','tickdir','out','fontsize',14);%,'box','fancy'
 
 for ii=1:length(IROC_Longitudes)
+    switch IROC_marker{ii}
+        case 'o'
+            msize = 19;
+        case 's'
+            msize = 21;
+    end
     if isnan(selcol(ii));
-    m_plot(IROC_Longitudes(ii),IROC_Latitudes(ii),...
-        'marker',IROC_marker{ii},'markersize',16,'markerfacecolor',[.3 .3 .3],'markeredgecolor','w')        
+        m_plot(IROC_Longitudes(ii),IROC_Latitudes(ii),...
+            'marker',IROC_marker{ii},'markersize',msize,'markerfacecolor',[.6 .6 .6],'markeredgecolor','w')
     else
-    m_plot(IROC_Longitudes(ii),IROC_Latitudes(ii),...
-        'marker',IROC_marker{ii},'markersize',16,'markerfacecolor',pgc(selcol(ii),:),'markeredgecolor','k')
+        m_plot(IROC_Longitudes(ii),IROC_Latitudes(ii),...
+            'marker',IROC_marker{ii},'markersize',msize,'markerfacecolor',pgc(selcol(ii),:),'markeredgecolor','k')
     end
 end
 
-m_text(-17.5,87,sprintf('%4d',selyear),'fontsize',16,'fontweight','bold','horizontalalignment','center')
+m_text(-17.5,87,sprintf('%4d',selyear),'fontsize',20,'fontweight','bold','horizontalalignment','center')
 
 axl = fun_plot_collegend_anom(gcf,pgc);
 set(axl,'position',[0.1 0.05 0.8 0.03])
