@@ -13,10 +13,10 @@ for ff=1:size(allFiles,1)
     allFiles(ff,:) = strrep(allFiles(ff,:),'.',' ');
 end
 
-
 allFiles=unique(allFiles,'rows');
 allFiles=cellstr(allFiles);
-allFiles([1,34])=[];
+allFiles(1)=[];
+allFiles(strcmp(allFiles,'Disclaimer txt'))=[];
 
 OutputTable = cell(size(allFiles,1),50);
 AllVarNames={};
@@ -33,10 +33,15 @@ for ff=1:size(allFiles,1)
     bline = fgetl(fid); 
     while ~isempty(regexpi(bline,'#'))  
         tmp = strsplit(bline,':');
-        tmp2= strsplit(bline,',');
         VarName = tmp{1};
         VarName = strtrim(VarName(regexpi(VarName,'#')+1:end));
-        VarContent = tmp2(2);
+        if regexpi(bline,'"')
+            tmp2= strsplit(bline,'"');            
+            VarContent = tmp2(2);
+        else
+            tmp2= strsplit(bline,',');
+            VarContent = tmp2(2);
+        end
         if ismember(VarName,AllVarNames)
             idxC = find(strcmp(VarName,AllVarNames));
         else
@@ -61,5 +66,4 @@ for rr=1:length(RegionOrder)
 end
 
 OutputTable3 = cell2table(OutputTable2(:,1:length(AllVarNames)),'VariableNames',AllVarNames);
-writetable(OutputTable3,'IROC_2025_AllMetaData.xlsx');
-
+writetable(OutputTable3,['IROC_2025_AllMetaData_' datestr(now,'yyyy-mm-dd'), '.xlsx']);

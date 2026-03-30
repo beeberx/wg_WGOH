@@ -57,7 +57,7 @@ caxis([-10000 10])
 load('H:\Working_Projects\ICES Working Group Oceanic Hydrography\GitHub_wg_WGOH\wg_WGOH\IROC_2025\RegionBoundaries\Code\IROC_2025_regions.mat')
 for rr=1:7;
     eval(['rdata = IROC_newregions.region' num2str(rr) ';']);
-    m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color',[.6 .6 .6])
+    m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color',[.4 .4 .4])
 end
 
 

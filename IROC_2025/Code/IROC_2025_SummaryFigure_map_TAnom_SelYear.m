@@ -60,14 +60,14 @@ for ii=1:length(IROC_Longitudes)
             'marker',IROC_marker{ii},'markersize',msize,'markerfacecolor',[.6 .6 .6],'markeredgecolor','w')
     else
         m_plot(IROC_Longitudes(ii),IROC_Latitudes(ii),...
-            'marker',IROC_marker{ii},'markersize',16,'markerfacecolor',rbc(selcol(ii),:),'markeredgecolor','k')
+            'marker',IROC_marker{ii},'markersize',msize,'markerfacecolor',rbc(selcol(ii),:),'markeredgecolor','k')
     end
 end
 
-m_text(-17.5,87,sprintf('%4d',selyear),'fontsize',16,'fontweight','bold','horizontalalignment','center')
+m_text(-17.5,87,sprintf('%4d',selyear),'fontsize',20,'fontweight','bold','horizontalalignment','center')
 
-axl=fun_plot_collegend_anom(gcf,rbc);
-set(axl,'position',[0.1 0.05 0.8 0.03])
+axl=fun_plot_collegend_anom(gcf,rbc,12);
+set(axl,'position',[0.025 0.03 0.95 0.03])
 
 set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);

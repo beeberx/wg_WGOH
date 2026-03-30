@@ -16,7 +16,8 @@ end
 
 allFiles=unique(allFiles,'rows');
 allFiles=cellstr(allFiles);
-allFiles([1,34])=[];
+allFiles(1)=[];
+allFiles(strcmp(allFiles,'Disclaimer txt'))=[];
 
 OutputTable = cell(size(allFiles,1),8);
 
@@ -74,5 +75,5 @@ for rr=1:length(RegionOrder)
 end
 
 OutputTable3 = cell2table(OutputTable2,'VariableNames',{'Region','Index','Station Description','Latitude','Longitude','Measurement Depth (m)','Data Source','Contact Name'});
-writetable(OutputTable3,'IROC_2025_DataContributors.xlsx');
+writetable(OutputTable3,['IROC_2025_DataContributors_' datestr(now,'yyyy-mm-dd'), '.xlsx']);
 

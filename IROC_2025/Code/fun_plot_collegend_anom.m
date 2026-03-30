@@ -1,4 +1,8 @@
-function tx = fun_plot_collegend_anom(figh,colmap)
+function tx = fun_plot_collegend_anom(figh,colmap,fsize)
+
+if nargin<3
+    fsize = 14;
+end
 
 yytxt = 1.4;
 figure(figh),hold on
@@ -13,24 +17,24 @@ for pp=1:length(clow)
     if pp==1
         patch(tx,pp+[-0.5 0.5 0.5 -0.5 -0.5],[0 0 1 1 0],colmap(pp,:),'edgecolor','none')
         text(pp,yytxt,['y \leq ' sprintf('% -3.1f',clow(pp))], ...
-           'horizontalalignment','center','VerticalAlignment','bottom','interpreter','tex','FontSize',12);
+           'horizontalalignment','center','VerticalAlignment','bottom','interpreter','tex','FontSize',fsize);
         patch(tx,pp+[-0.5 0.5 0.5 -0.5 -0.5],[0 0 4 4 0],colmap(pp,:),'facecolor','none','edgecolor','k')
     elseif pp==length(clow)
         patch(tx,pp+[-0.5 0.5 0.5 -0.5 -0.5],[0 0 1 1 0],colmap(pp,:),'edgecolor','none')
         text(pp,yytxt,[sprintf('% -3.1f',clow(pp)) ' \leq y' ], ...
-           'horizontalalignment','center','VerticalAlignment','bottom','interpreter','tex','FontSize',12);
+           'horizontalalignment','center','VerticalAlignment','bottom','interpreter','tex','FontSize',fsize);
         patch(tx,pp+[-0.5 0.5 0.5 -0.5 -0.5],[0 0 4 4 0],colmap(pp,:),'facecolor','none','edgecolor','k')
     else
         patch(tx,pp+[-0.5 0.5 0.5 -0.5 -0.5],[0 0 1 1 0],colmap(pp,:),'edgecolor','none')
         if sign(cupp(pp))==-1
             text(pp,yytxt,{[sprintf('% -3.1f',cupp(pp)),' < ','y',' \leq ', sprintf('% -3.1f',clow(pp))]}, ...
-           'horizontalalignment','center','VerticalAlignment','bottom','interpreter','tex','FontSize',12);
+           'horizontalalignment','center','VerticalAlignment','bottom','interpreter','tex','FontSize',fsize);
         else
             text(pp,yytxt,{[sprintf('% -3.1f',clow(pp)),' \leq ','y',' < ', sprintf('% -3.1f',cupp(pp))]}, ...
-           'horizontalalignment','center','VerticalAlignment','bottom','interpreter','tex','FontSize',12);
+           'horizontalalignment','center','VerticalAlignment','bottom','interpreter','tex','FontSize',fsize);
         end
 %         text(pp,yytxt,{[sprintf('% -3.1f',clow(pp)),'\leq'];'y';['<', sprintf('% -3.1f',cupp(pp))]}, ...
-%            'horizontalalignment','center','VerticalAlignment','bottom','interpreter','tex','FontSize',12);
+%            'horizontalalignment','center','VerticalAlignment','bottom','interpreter','tex','FontSize',fsize);
         patch(tx,pp+[-0.5 0.5 0.5 -0.5 -0.5],[0 0 4 4 0],colmap(pp,:),'facecolor','none','edgecolor','k')
     end
 end

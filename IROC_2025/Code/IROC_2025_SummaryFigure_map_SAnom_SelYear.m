@@ -65,8 +65,8 @@ end
 
 m_text(-17.5,87,sprintf('%4d',selyear),'fontsize',20,'fontweight','bold','horizontalalignment','center')
 
-axl = fun_plot_collegend_anom(gcf,pgc);
-set(axl,'position',[0.1 0.05 0.8 0.03])
+axl = fun_plot_collegend_anom(gcf,pgc,12);
+set(axl,'position',[0.025 0.03 0.95 0.03])
 
 set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
