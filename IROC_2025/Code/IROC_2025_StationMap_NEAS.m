@@ -48,9 +48,10 @@ cmap_ocean(cmap_ocean<0)=0;cmap_ocean(cmap_ocean>1)=1;
 [CS,CH]=m_contourf(lon,lat,double(eta)',[-10000:1000:1000 1000:100:0],'edgecolor','none');
 hold on
 caxis([-10000 0])
-m_grid('linestyle','none','tickdir','out','linewidth',3);
+m_grid('linestyle','none','tickdir','out','linewidth',3,'fontsize',16);
 
-m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color','b')%[.6 .6 .6]
+% m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color','b')%[.6 .6 .6]
+m_patch(rdata(:,1),rdata(:,2),'b','linestyle','-','LineWidth',1,'edgecolor','b','facecolor','none')%[.6 .6 .6]
 
 colormap([cmap_ocean]);
 
@@ -68,7 +69,7 @@ brighten(.3);
 
 %%
 for ii=1:17
-    if ismember(IROC_metaData.Index_{ii},{'NEAS_016','NEAS_015','NEAS_013','NEAS_011',...
+    if ismember(IROC_metaData.Index_{ii},{'NEAS_015','NEAS_011',...
             'NEAS_004','NEAS_010'})
         posT = [LONT(ii)+1,LATT(ii)-0.75];
         tHal = 'left';
@@ -86,11 +87,11 @@ for ii=1:17
         tHal = 'center';
         tVal = 'top';
     elseif ismember(IROC_metaData.Index_{ii},{'NEAS_003'})
-        posT = [LONT(ii)+2.5,LATT(ii)];
+        posT = [LONT(ii)+1.5,LATT(ii)];
         tVal = 'middle';
         tHal = 'left';
     elseif ismember(IROC_metaData.Index_{ii},{'NEAS_006'})
-        posT = [LONT(ii)-1,LATT(ii)-0.5];
+        posT = [LONT(ii)-0.5,LATT(ii)+0.5];
         tVal = 'bottom';
         tHal = 'right';
     elseif ismember(IROC_metaData.Index_{ii},{'NEAS_007'})
@@ -106,20 +107,26 @@ for ii=1:17
         tVal = 'bottom';
         tHal = 'right';
     elseif ismember(IROC_metaData.Index_{ii},{'NEAS_013'})
-        posT = [LONT(ii)+1,LATT(ii)];
-        tVal = 'middle';
+        LONT(ii)=-66;LATT(ii)=42.2;
+        posT = [LONT(ii)+0.5,LATT(ii)-0.2];
+        tVal = 'top';
         tHal = 'left';
     elseif ismember(IROC_metaData.Index_{ii},{'NEAS_012'})
-        posT = [LONT(ii)+1.5,LATT(ii)];
+        LONT(ii)=-66;LATT(ii)=43;
+        posT = [LONT(ii)+0.5,LATT(ii)];
         tVal = 'middle';
         tHal = 'left';
     elseif ismember(IROC_metaData.Index_{ii},{'NEAS_014'})
-        posT = [LONT(ii)+1,LATT(ii)-1.5];
+        posT = [LONT(ii)-1,LATT(ii)-0.5];
         tVal = 'top';
-        tHal = 'left';
+        tHal = 'right';
+    elseif ismember(IROC_metaData.Index_{ii},{'NEAS_016'})
+        posT = [LONT(ii)-1,LATT(ii)+0.25];
+        tVal = 'bottom';
+        tHal = 'right';
     end
     m_plot([LONT(ii) posT(1)],[LATT(ii) posT(2)],'k-')
-    m_text(posT(1),posT(2),IROC_metaData.Index_{ii},...
+    m_text(posT(1),posT(2),IROC_metaData.Index_{ii},'fontsize',14,...
         'interpreter','none','color','r','backgroundcolor','w',...
         'edgecolor','k','verticalalignment',tVal','horizontalalignment',tHal)
     clear posT tVal tHal
@@ -140,7 +147,7 @@ m_text(-81,36,'U.S.A.','color',[.8 .8 .8],'fontsize',22,'fontweight','bold','hor
 ax=m_contfbar(1,[.5 .8],CS,CH);
 title(ax,{'Depth (m)','',''}); % Move up by inserting a blank line
 
-set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
+set(gcf,'position',IROC_2025_fun_framesize(),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
 imwrite(F.cdata,[ 'IROC_2025_StationMap_',regTLA,'.png'])
 % set(gcf,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...

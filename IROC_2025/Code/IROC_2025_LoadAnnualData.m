@@ -42,7 +42,7 @@ for ff=1:size(IROC_TS,1)
     if regexpi(IROC_TS{ff},'GulfStLawrence')
         dat=[timdata.Var1,timdata.Var6,NaN.*timdata.Var6,NaN.*timdata.Var6,...
             timdata.Var7,NaN.*timdata.Var7,NaN.*timdata.Var7];
-    elseif regexpi(IROC_TS{ff},'Biscay') 
+    elseif regexpi(IROC_TS{ff},'BICC_122') 
         dat1=[timdata.Var1,timdata.Var2,NaN.*timdata.Var2,NaN.*timdata.Var2,...
             timdata.Var3,NaN.*timdata.Var3,NaN.*timdata.Var3];
         yrs = unique(floor(dat1(:,1)));
@@ -55,7 +55,7 @@ for ff=1:size(IROC_TS,1)
             clear idxy
         end
         clear yrs dat1
-    elseif regexpi(IROC_TS{ff},'Cadiz')
+    elseif regexpi(IROC_TS{ff},'BICC_312')
         dat1=[timdata.Var1,timdata.Var2,NaN.*timdata.Var2,NaN.*timdata.Var2,...
             timdata.Var3,NaN.*timdata.Var3,NaN.*timdata.Var3];
         yrs = unique(floor(dat1(:,1)));
@@ -68,7 +68,7 @@ for ff=1:size(IROC_TS,1)
             clear idxy
         end
         clear yrs dat1
-    elseif regexpi(IROC_TS{ff},'Canary') 
+    elseif regexpi(IROC_TS{ff},'BICC_412') 
         dat1=[timdata.Var1,timdata.Var2,NaN.*timdata.Var2,NaN.*timdata.Var2,...
             timdata.Var3,NaN.*timdata.Var3,NaN.*timdata.Var3];
         yrs = unique(floor(dat1(:,1)));

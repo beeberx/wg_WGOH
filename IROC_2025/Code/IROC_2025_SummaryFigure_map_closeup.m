@@ -99,7 +99,7 @@ for ii=1:7;
 end
 for ii=8:10;
     if ~isempty(regexpi(IROC_TS_Codes{ii},')'))
-        txtlab = IROC_TS_Codes{ii}(regexpi(IROC_TS_Codes{ii},')')+2:end) 
+        txtlab = IROC_TS_Codes{ii}(regexpi(IROC_TS_Codes{ii},')')+2:end); 
     else
         txtlab = IROC_TS_Codes{ii};
     end
@@ -107,7 +107,7 @@ for ii=8:10;
 end
 for ii=11:17;
     if ~isempty(regexpi(IROC_TS_Codes{ii},')'))
-        txtlab = IROC_TS_Codes{ii}(regexpi(IROC_TS_Codes{ii},')')+2:end) 
+        txtlab = IROC_TS_Codes{ii}(regexpi(IROC_TS_Codes{ii},')')+2:end);
     else
         txtlab = IROC_TS_Codes{ii};
     end
@@ -115,7 +115,7 @@ for ii=11:17;
 end
 
 
-set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
+set(gcf,'position',IROC_2025_fun_framesize(),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
 imwrite(F.cdata,'IROC_2025_Map_Timeseries_Positions_CloseUp.png','png','XResolution',1200)
 %%

@@ -1,0 +1,9 @@
+% IROC_2025_StationMap_SteeringFile
+
+run IROC_2025_StationMap_BBAY.m
+run IROC_2025_StationMap_NEAS.m
+run IROC_2025_StationMap_SPNA.m
+run IROC_2025_StationMap_BICC.m
+run IROC_2025_StationMap_NSBS.m
+run IROC_2025_StationMap_NWES.m
+run IROC_2025_StationMap_BALT.m

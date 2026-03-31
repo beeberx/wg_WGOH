@@ -104,7 +104,7 @@ for ii=11:17;
 end
 
 
-set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
+set(gcf,'position',IROC_2025_fun_framesize(),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
 imwrite(F.cdata,'IROC_2025_Map_Timeseries_Positions.png','png')
 %%
