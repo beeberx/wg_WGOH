@@ -28,17 +28,20 @@ timeseries_files = {'Plymouth_WCO_E1_Annual.csv';
     %'NSea_FairIsle_Annual-TMP-2025-02-26.csv'
     }
 
+
+
+idxtemp = [5,4,6,2,3,1];
+
+
 timeseries_names = {'Western Channel Observatory';
     'Helgoland Roads';
-    'Ferry - West Gabbard';
-    'AW Norwegian Trench (Uts.B)';
-    'Nearbed NW North Sea (Uts.A)';
-    'Central Skaggerak'%;
+    'West Gabbard';
+    'AW Norwegian Trench  (Utsira B)';
+    'Nearbed NW North Sea (Utsira A)';
+    'Central Skagerrak'%;
     %'Cooled Atlantic Water';
     %'Fair Isle Current Water'
     }
-
-idxtemp = [5,4,6,2,3,1];
 
 ylower = 1975;
 yhigher = last_year;
@@ -117,12 +120,12 @@ for ss=1:size(timeseries_files,1);
     %ylabel(num2str(ss))
     if mod(ss,2)==1
         set(ax(ss),'YaxisLocation','left','Box','off')
-        text(ymin+0.5,t_ext-0.5,timeseries_names{idxtemp(ss)},'HorizontalAlignment','left',...
-                'color','r','FontWeight','bold')
+        text(ymin+0.5,t_ext-0.5,['(',char(96+ss),') ',timeseries_names{idxtemp(ss)}],...
+            'HorizontalAlignment','left','color','r','FontWeight','bold')
     else
         set(ax(ss),'YaxisLocation','right','Box','off')
-        text(ymax-0.5,t_ext-0.5,timeseries_names{idxtemp(ss)},'HorizontalAlignment','right',...
-                'color','r','FontWeight','bold')
+        text(ymax-0.5,t_ext-0.5,['(',char(96+ss),') ',timeseries_names{idxtemp(ss)}],...
+            'HorizontalAlignment','right','color','r','FontWeight','bold')
     end
     ylabel('SD units','fontsize',10)
     for yy=1:length(xdata)

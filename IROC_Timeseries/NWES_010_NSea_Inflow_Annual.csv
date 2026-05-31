@@ -1,0 +1,60 @@
+# Index:,NWES_010,,
+# Station Description:,Modelled North Sea Inflow,,
+# Region Code:,NWES,,
+# Latitude:,59 N,,
+# Longitude:,1 E,,
+# Detailed Location (WKT):,,,
+# Measurement Depth/Range:,Depth Averaged,,
+# Sampling Frequency:,,,
+# Long Term Averaging Period:,1991-2020,,
+# Long Term Mean:,-0.7864,1.3586,0.5722
+# Long Term Standard Deviation:,0.0344,0.0921,0.0707
+# Calculation Methodology:,"Annual Mean Modelled Volume Transport between Orkney - Scotland and Utsira - Norway,",,
+# Data Source:,IMR - Institute of Marine Research - Norway,,
+# Contact Name (email):,Jon Albretsen (jon.albretsen@hi.no),,
+# Notes:,"Modelled Volume Transport between Orkney - Scotland and Utsira - Norway (-Inflow is flow in a southwards direction. +Outflow is flow in a northward direction",,
+# Reference:,,,
+# DOI:,,,
+# Website:,,,
+Year,Inflow (Sv),Outflow (Sv),Net Flow (Sv)
+1985,-0.771,1.214,0.443
+1986,-0.809,1.437,0.628
+1987,-0.780,1.241,0.461
+1988,-0.773,1.296,0.523
+1989,-0.842,1.517,0.676
+1990,-0.814,1.533,0.719
+1991,-0.779,1.398,0.619
+1992,-0.813,1.437,0.623
+1993,-0.815,1.418,0.603
+1994,-0.791,1.474,0.683
+1995,-0.795,1.327,0.532
+1996,-0.749,1.228,0.479
+1997,-0.777,1.353,0.576
+1998,-0.753,1.306,0.553
+1999,-0.797,1.376,0.579
+2000,-0.822,1.369,0.547
+2001,-0.764,1.240,0.477
+2002,-0.775,1.340,0.565
+2003,-0.771,1.303,0.533
+2004,-0.806,1.331,0.525
+2005,-0.835,1.352,0.517
+2006,-0.772,1.372,0.600
+2007,-0.843,1.385,0.542
+2008,-0.752,1.339,0.586
+2009,-0.749,1.324,0.575
+2010,-0.700,1.102,0.403
+2011,-0.861,1.523,0.662
+2012,-0.769,1.260,0.491
+2013,-0.801,1.403,0.602
+2014,-0.779,1.431,0.652
+2015,-0.813,1.565,0.752
+2016,-0.758,1.315,0.557
+2017,-0.817,1.360,0.544
+2018,-0.769,1.387,0.618
+2019,-0.749,1.259,0.510
+2020,-0.820,1.481,0.661
+2021,-0.783,1.261,0.478
+2022,-0.833,1.462,0.629
+2023,-0.752,1.259,0.507
+2024,-0.760,1.328,0.568
+2025,-0.805,1.339,0.534

@@ -29,12 +29,13 @@ timeseries_files = {'Plymouth_WCO_E1_Annual.csv';
     %'NSea_FairIsle_Annual-TMP-2025-02-26.csv'
     }
 
+
 timeseries_names = {'Western Channel Observatory';
     'Helgoland Roads';
-    'Ferry - West Gabbard';
-    'AW Norwegian Trench (Uts.B)';
-    'Nearbed NW North Sea (Uts.A)';
-    'Central Skaggerak'%;
+    'West Gabbard';
+    'AW Norwegian Trench  (Utsira B)';
+    'Nearbed NW North Sea (Utsira A)';
+    'Central Skagerrak'%;
     %'Cooled Atlantic Water';
     %'Fair Isle Current Water'
     }
@@ -119,15 +120,16 @@ for ss=1:size(timeseries_files,1);
     end
     set(ax(ss),'Color','none')
     %ylabel(num2str(ss))
-    if mod(ss,2)==1
+        if mod(ss,2)==1
         set(ax(ss),'YaxisLocation','left','Box','off')
-        text(ymin+0.5,t_ext-0.5,timeseries_names{idxsal(ss)},'HorizontalAlignment','left',...
-                'color','r','FontWeight','bold')
+        text(ymin+0.5,t_ext-0.5,['(',char(96+ss),') ',timeseries_names{idxsal(ss)}],...
+            'HorizontalAlignment','left','color','r','FontWeight','bold')
     else
         set(ax(ss),'YaxisLocation','right','Box','off')
-        text(ymax-0.5,t_ext-0.5,timeseries_names{idxsal(ss)},'HorizontalAlignment','right',...
-                'color','r','FontWeight','bold')
+        text(ymax-0.5,t_ext-0.5,['(',char(96+ss),') ',timeseries_names{idxsal(ss)}],...
+            'HorizontalAlignment','right','color','r','FontWeight','bold')
     end
+    ylabel('SD units','fontsize',10)
     for yy=1:length(xdata)
         if isnan(ydata(yy)) || isnan(zdata(yy));continue;end
         h=bar(xdata(yy),ydata(yy),1.0);
@@ -172,7 +174,7 @@ end
 set(tx,'color','none','XColor','none','ycolor','none','xlim',[0.5 size(pgc,1)+0.5],'ylim',[0 6])
 
 for ss=1:length(idxsal);
-    set(ax(ss),'Position',pos_mat(abs(ss-(pnum+1)),:),'TickLength',[.002 .002]);
+    set(ax(ss),'Position',pos_mat(abs(ss-(pnum+1)),:),'TickLength',[.01 .005]);
 end
 
 fname_fig = ['salplot_',datestr(now,'yyyymmdd'),...
