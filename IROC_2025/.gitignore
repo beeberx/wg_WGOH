@@ -1,5 +1,6 @@
 *.asv
 *.png
+Thumbs.db
 RegionBoundaries/Figures/
 ICES_ecoregions.zip
 ICES_ecoregions/
