@@ -39,14 +39,14 @@ AData = flipud(squeeze(Data_IROC(idx2plot,7,:))');
 
 figh = fun_plot_colourboxes(Years_IROC(idx2plot),[1:size(Data_IROC,3)],AData,...
     flipud(IROC_TS_Codes),pgc,'')
-set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
+set(gcf,'position',IROC_2025_fun_framesize(),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
 imwrite(F.cdata,['IROC_ScoreCard_S_',datestr(now,'yyyymmdd'),'.png'],'png')
 
 idx2plot = intersect(find(Years_IROC>=2005),find(Years_IROC<=2024));
 figh = fun_plot_colourboxes_with_value(Years_IROC(idx2plot),[1:size(Data_IROC,3)],...
     flipud(squeeze(Data_IROC(idx2plot,7,:))'),flipud(squeeze(Data_IROC(idx2plot,7,:))'),flipud(IROC_TS_Codes),pgc,'')
-set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
+set(gcf,'position',IROC_2025_fun_framesize(),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
 imwrite(F.cdata,['IROC_ScoreCard_S_with_values',datestr(now,'yyyymmdd'),'.png'],'png')
 

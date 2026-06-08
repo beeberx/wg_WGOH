@@ -49,9 +49,10 @@ cmap_ocean(cmap_ocean<0)=0;cmap_ocean(cmap_ocean>1)=1;
 [CS,CH]=m_contourf(lon,lat,double(eta)',[-10000:1000:1000 1000:100:0],'edgecolor','none');
 hold on
 caxis([-10000 0])
-m_grid('linestyle','none','tickdir','out','linewidth',3);
+m_grid('linestyle','none','tickdir','out','linewidth',3,'fontsize',16);
 
-m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color','b')%[.6 .6 .6]
+% m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color','b')%[.6 .6 .6]
+m_patch(rdata(:,1),rdata(:,2),'b','linestyle','-','LineWidth',1,'edgecolor','b','facecolor','none')%[.6 .6 .6]
 
 coldef_land = [0 0.3059 0.1059];
 m_gshhs_i('patch',coldef_land,'edgecolor','k')
@@ -154,7 +155,7 @@ for ii=1:size(IROC_metaData,1)
         tVal = 'top';
     end
     m_plot([LONT(ii) posT(1)],[LATT(ii) posT(2)],'k-')
-    m_text(posT(1),posT(2),txtT,...
+    m_text(posT(1),posT(2),txtT,'fontsize',14,...
         'interpreter','none','color','k','backgroundcolor',filcol,...
         'edgecolor','k','verticalalignment',tVal','horizontalalignment',tHal)
     clear posT tVal tHal
@@ -164,7 +165,7 @@ end
 ax=m_contfbar(1,[.5 .8],CS,CH);
 title(ax,{'Depth (m)','',''}); % Move up by inserting a blank line
 
-set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
+set(gcf,'position',IROC_2025_fun_framesize(),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
 imwrite(F.cdata,[ 'IROC_2025_StationMap_',regTLA,'.png'])
 % set(gcf,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...

@@ -10,9 +10,9 @@ SPNA_TS = {'SPNA_021_CentralLabradorSea_Intermediate_Annual.csv';
 'SPNA_023_CentralIrmingerSea_Intermediate_Annual.csv';
 'SPNA_024_NorthernIcelandBasin_Upper_Annual.csv'};
 
-BICC_TS = {'BICC_004_Biscay_Santander7_300-600_Timeseries.csv';
-'BICC_007_Cadiz_STOCA-SP6_100_300_Timeseries.csv';
-'BICC_012_CanaryBasinOceanicWaters_0200-0800_Timeseries.csv'};
+BICC_TS = {'BICC_122_Timeseries.csv';%'BICC_004_Biscay_Santander7_300-600_Timeseries.csv';
+'BICC_312_Timeseries.csv';%'BICC_007_Cadiz_STOCA-SP6_100_300_Timeseries.csv';
+'BICC_412_Timeseries.csv'};%'BICC_012_CanaryBasinOceanicWaters_0200-0800_Timeseries.csv'};
 
 NSBS_TS = {'NSBS_009_FaroeShetland_NAW_Annual.csv';
 'NSBS_030_Iceland_Lon2_6_Annual.csv';
@@ -53,9 +53,9 @@ IROC_TS_Codes = {'BBAY 006';
     '(*) SPNA 021';
     '(*) SPNA 023';
     'SPNA 024';
-    'BICC 004';
-    'BICC 007';
-    '(*) BICC 012';
+    'BICC 122';
+    'BICC 312';
+    '(*) BICC 412';
     'NSBS 009';
     'NSBS 030';
     '(*) NSBS 015';

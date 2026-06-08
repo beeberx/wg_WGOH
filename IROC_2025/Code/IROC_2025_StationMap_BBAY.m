@@ -27,13 +27,14 @@ load('H:\Working_Projects\ICES Working Group Oceanic Hydrography\GitHub_wg_WGOH\
 rdata = IROC_newregions.region1;
 
 %%
-IROC_metaData = readtable('..\Data\IROC_Header_Summary_updated_2025-08-22.xlsx');
-idx = find(cellfun(@isempty,regexpi(IROC_metaData.Index_,regTLA))==0);
+%IROC_metaData = readtable('..\Data\IROC_Header_Summary_updated_2025-08-22.xlsx');
+IROC_metaData = readtable('IROC_2025_AllMetaData_2026-03-23.xlsx');
+idx = find(cellfun(@isempty,regexpi(IROC_metaData.Index,regTLA))==0);
 IROC_metaData=IROC_metaData(idx,:);clear idx
 
 %%
-POI_lab = cat(1,IROC_metaData.Index_);
-POI_wkt = cat(1,IROC_metaData.Area_);
+POI_lab = cat(1,IROC_metaData.Index);
+POI_wkt = cat(1,IROC_metaData.DetailedLocation_WKT_);
 
 %%
 close all
@@ -56,16 +57,17 @@ purp = [160 43 147]./255;
 [CS,CH]=m_contourf(lon,lat,double(eta)',[-10000:1000:1000 1000:100:0],'edgecolor','none');
 hold on
 caxis([-10000 0])
-m_grid('linestyle','none','tickdir','out','linewidth',3);
+m_grid('linestyle','none','tickdir','out','linewidth',3,'fontsize',16);
 
 brighten(.3);
 
 colormap([cmap_ocean]);
 
-plot(Contour2300(1,:),Contour2300(2,:),'color',dblue);
-plot(Contour750(1,:),Contour750(2,:),'color',purp);
+plot(Contour2300(1,:),Contour2300(2,:),'color',dblue,'linewidth',1.5);
+plot(Contour750(1,:),Contour750(2,:),'color',purp,'linewidth',1.5);
 
-m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color','b')%[.6 .6 .6]
+% m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color','b')%[.6 .6 .6]
+m_patch(rdata(:,1),rdata(:,2),'b','linestyle','-','LineWidth',1,'edgecolor','b','facecolor','none')%[.6 .6 .6]
 
 coldef_land = [0 0.3059 0.1059];
 m_gshhs_i('patch',coldef_land,'edgecolor','k')
@@ -80,27 +82,27 @@ end
 %%
 for ii=1:size(IROC_metaData,1)
     if isnan(LONT(ii));continue;end
-    if ismember(IROC_metaData.Index_{ii},{'BBAY_002';...
+    if ismember(IROC_metaData.Index{ii},{'BBAY_002';...
             'BBAY_006';'BBAY_005'})
         continue
-    elseif ismember(IROC_metaData.Index_{ii},{'BBAY_001'})
+    elseif ismember(IROC_metaData.Index{ii},{'BBAY_001'})
         txtT = {'CD3'};%{'BBAY_001';'BBAY_002'};
         posT = [LONT(ii)-0.5,LATT(ii)-0.5];
         tHal = 'right';
         tVal = 'top';
-    elseif ismember(IROC_metaData.Index_{ii},{'BBAY_003'})
+    elseif ismember(IROC_metaData.Index{ii},{'BBAY_003'})
         txtT = {'FB4'};%{'BBAY_003';'BBAY_006'};
         posT = [LONT(ii)-0.5,LATT(ii)-1];
         tHal = 'right';
         tVal = 'top';
-    elseif ismember(IROC_metaData.Index_{ii},{'BBAY_004'})
+    elseif ismember(IROC_metaData.Index{ii},{'BBAY_004'})
         txtT = {'Nuuk'};%{'Nuuk';'BBAY_004'};
         posT = [LONT(ii)+0.5,LATT(ii)+0.5];
         tHal = 'left';
         tVal = 'bottom';
     end
     m_plot([LONT(ii) posT(1)],[LATT(ii) posT(2)],'k-')
-    m_text(posT(1),posT(2),txtT,...
+    m_text(posT(1),posT(2),txtT,'fontsize',14,...
         'interpreter','none','color','r','backgroundcolor','w',...
         'edgecolor','k','verticalalignment',tVal,'horizontalalignment',tHal)
     clear posT tVal tHal
@@ -109,12 +111,12 @@ end
 plot([Contour2300(1,1) Contour2300(1,1)+0.06],[Contour2300(2,1) Contour2300(2,1) ],'k-')
 text(Contour2300(1,1)+0.06,Contour2300(2,1),{'Central';'Basin'},...
     'interpreter','none','color',dblue,'backgroundcolor','w',...
-    'edgecolor','k','verticalalignment','middle','horizontalalignment','left')
+    'edgecolor','k','verticalalignment','middle','horizontalalignment','left','fontsize',14)
     
 plot([Contour750(1,1) Contour750(1,1)-0.06],[Contour750(2,1) Contour750(2,1) ],'k-')
 text(Contour750(1,1)-0.06,Contour750(2,1),{'Baffin';'Island';'Shelf'},...
     'interpreter','none','color',purp,'backgroundcolor','w',...
-    'edgecolor','k','verticalalignment','middle','horizontalalignment','center')
+    'edgecolor','k','verticalalignment','middle','horizontalalignment','center','fontsize',14)
 
 
 m_text(-77,71,'Baffin Island','color','w','Rotation',-45,'fontsize',16,'fontweight','bold')
@@ -126,7 +128,7 @@ m_text(-80.5,78.7,{'Ellesmere';'Island'},'color','w','fontsize',14,'fontweight',
 ax=m_contfbar(1,[.5 .8],CS,CH);
 title(ax,{'Depth (m)','',''}); % Move up by inserting a blank line
 
-set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
+set(gcf,'position',IROC_2025_fun_framesize(),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
 imwrite(F.cdata,[ 'IROC_2025_StationMap_',regTLA,'.png'])
 % set(gcf,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...

@@ -1,5 +1,5 @@
+function IROC_2025_SummaryFigure_map_TAnom_SelYear(selyear_sumfig)
 % Map of Selected Stations - Summary Figure T Anomalies in selected year
-clear all;close all;clc;
 edge_W =  -180;
 edge_E =   180;
 edge_S =    10;
@@ -20,18 +20,18 @@ IROC_txtcol(:) = {'k'};
 IROC_txtcol([5,10,13]) = {'r'};
 
 
-%%
-prompt={'Enter year for plotting'};
-name='Select Year';
-numlines=1;
-defaultanswer={datestr(now,'yyyy')};
-answer=inputdlg(prompt,name,numlines,defaultanswer);
+% removed because made to function
+% %%
+% prompt={'Enter year for plotting'};
+% name='Select Year';
+% numlines=1;
+% defaultanswer={datestr(now,'yyyy')};
+% answer=inputdlg(prompt,name,numlines,defaultanswer);
+% selyear_sumfig = str2num(answer{1});
+% clear prompt name numlines defaultanswer answer
 
-selyear = str2num(answer{1});
-clear prompt name numlines defaultanswer answer
-
 %%
-selidx = find(Data_IROC(:,1)==selyear);
+selidx = find(Data_IROC(:,1)==selyear_sumfig);
 
 selcol = fun_lookup_anom_colour(squeeze(Data_IROC(selidx,4,:)),rbc,[-3.5 3.5]);
 
@@ -57,19 +57,19 @@ for ii=1:length(IROC_Longitudes)
     end
     if isnan(selcol(ii));
         m_plot(IROC_Longitudes(ii),IROC_Latitudes(ii),...
-            'marker',IROC_marker{ii},'markersize',msize,'markerfacecolor',[.6 .6 .6],'markeredgecolor','w')
+            'marker',IROC_marker{ii},'markersize',msize,'markerfacecolor',[.6 .6 .6],'markeredgecolor','r')
     else
         m_plot(IROC_Longitudes(ii),IROC_Latitudes(ii),...
             'marker',IROC_marker{ii},'markersize',msize,'markerfacecolor',rbc(selcol(ii),:),'markeredgecolor','k')
     end
 end
 
-m_text(-17.5,87,sprintf('%4d',selyear),'fontsize',20,'fontweight','bold','horizontalalignment','center')
+m_text(-17.5,87,sprintf('%4d',selyear_sumfig),'fontsize',20,'fontweight','bold','horizontalalignment','center')
 
 axl=fun_plot_collegend_anom(gcf,rbc,12);
 set(axl,'position',[0.025 0.03 0.95 0.03])
 
-set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
+set(gcf,'position',IROC_2025_fun_framesize(),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
-imwrite(F.cdata,['IROC_2025_Map_TAnom_' sprintf('%4d',selyear),'.png'],'png','XResolution',1200)
+imwrite(F.cdata,['IROC_2025_Map_TAnom_' sprintf('%4d',selyear_sumfig),'.png'],'png','XResolution',1200)
 %%

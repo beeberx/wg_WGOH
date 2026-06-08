@@ -6,7 +6,7 @@ edge_S =   50;
 edge_N =   70;
 regTLA = 'BALT';
 regTIT = 'Baltic Sea';
-polflag=1;
+polflag=0;
 
 
 fname = [getenv('Bathy') '\GEBCO_2024\GEBCO_2024_sub_ice_topo.nc'];
@@ -28,15 +28,16 @@ load('H:\Working_Projects\ICES Working Group Oceanic Hydrography\GitHub_wg_WGOH\
 rdata = IROC_newregions.region7;
 
 %%
-IROC_metaData = readtable('..\Data\IROC_Header_Summary_updated_2025-08-22.xlsx');
-idx = find(cellfun(@isempty,regexpi(IROC_metaData.Index_,regTLA))==0);
+%IROC_metaData = readtable('..\Data\IROC_Header_Summary_updated_2025-08-22.xlsx');
+IROC_metaData = readtable('IROC_2025_AllMetaData_2026-03-23.xlsx');
+idx = find(cellfun(@isempty,regexpi(IROC_metaData.Index,regTLA))==0);
 IROC_metaData=IROC_metaData(idx,:);clear idx
-[u,iU]=unique(IROC_metaData.Index_);
+[u,iU]=unique(IROC_metaData.Index);
 IROC_metaData = IROC_metaData(iU,:);clear u iU
 
 %%
-POI_lab = cat(1,IROC_metaData.Index_);
-POI_wkt = cat(1,IROC_metaData.Area_);
+POI_lab = cat(1,IROC_metaData.Index);
+POI_wkt = cat(1,IROC_metaData.DetailedLocation_WKT_);
 
 %%
 close all
@@ -48,10 +49,10 @@ cmap_ocean(cmap_ocean<0)=0;cmap_ocean(cmap_ocean>1)=1;
 [CS,CH]=m_contourf(lon,lat,double(eta)',[-10000:1000:1000 1000:100:0],'edgecolor','none');
 hold on
 caxis([-10000 0])
-m_grid('linestyle','none','tickdir','out','linewidth',3);
+m_grid('linestyle','none','tickdir','out','linewidth',3,'Fontsize',16);
 
-
-m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color','b')%[.6 .6 .6]
+% m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color','b')%[.6 .6 .6]
+m_patch(rdata(:,1),rdata(:,2),'b','linestyle','-','LineWidth',1,'edgecolor','b','facecolor','none')%[.6 .6 .6]
 
 colormap([cmap_ocean]);
 
@@ -70,17 +71,17 @@ brighten(.3);
 for ii=1:8
     tHal = 'left';
     tVal = 'middle';
-    if ismember(IROC_metaData.Index_{ii},{'BALT_006'})
+    if ismember(IROC_metaData.Index{ii},{'BALT_006'})
         posT = [31,LATT(ii)+0.5];
-    elseif ismember(IROC_metaData.Index_{ii},{'BALT_005'})
+    elseif ismember(IROC_metaData.Index{ii},{'BALT_005'})
         posT = [31,LATT(ii)-1];
-    elseif ismember(IROC_metaData.Index_{ii},{'BALT_004'})
+    elseif ismember(IROC_metaData.Index{ii},{'BALT_004'})
         posT = [31,LATT(ii)];
     else
         posT = [31,LATT(ii)];
     end
     m_plot([LONT(ii) posT(1)],[LATT(ii) posT(2)],'k-')
-    m_text(posT(1),posT(2),IROC_metaData.Index_{ii},...
+    m_text(posT(1),posT(2),IROC_metaData.Index{ii},'Fontsize',14,...
         'interpreter','none','color','r','backgroundcolor','w',...
         'edgecolor','k','verticalalignment',tVal','horizontalalignment',tHal)
     clear posT tVal tHal
@@ -96,11 +97,13 @@ m_plot(24.735,59.447,'ow','markerfacecolor','w','markeredgecolor','k','linewidth
 m_text(25.2,59.3,'Tallinn','color','w','verticalalignment','top','horizontalalignment','center','fontsize',14,'fontweight','bold')
 m_plot(24.071,56.985,'ow','markerfacecolor','w','markeredgecolor','k','linewidth',1.5)
 m_text(24.0,56.8,'Riga','color','w','verticalalignment','top','horizontalalignment','center','fontsize',14,'fontweight','bold')
+m_plot(12.5693,55.6761,'ow','markerfacecolor','w','markeredgecolor','k','linewidth',1.5)
+m_text(12.5,55.45,{'Copen-';'hagen'},'color',[.3 .3 .3],'verticalalignment','top','horizontalalignment','left','fontsize',12,'fontweight','bold')
 
 ax=m_contfbar(1,[.5 .8],CS,CH);
 title(ax,{'Depth (m)','',''}); % Move up by inserting a blank line
 
-set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
+set(gcf,'position',IROC_2025_fun_framesize(),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
 imwrite(F.cdata,[ 'IROC_2025_StationMap_',regTLA,'.png'])
 % set(gcf,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...

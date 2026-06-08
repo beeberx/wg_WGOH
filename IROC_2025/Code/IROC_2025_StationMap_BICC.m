@@ -6,7 +6,7 @@ edge_S =   15;
 edge_N =   50;
 regTLA = 'BICC';
 regTIT = 'Bay of Biscay, western Iberia and Canary Basin';
-polflag=1;
+polflag=0;
 
 fname = [getenv('Bathy') '\GEBCO_2024\GEBCO_2024_sub_ice_topo.nc'];
 
@@ -49,9 +49,10 @@ cmap_ocean(cmap_ocean<0)=0;cmap_ocean(cmap_ocean>1)=1;
 [CS,CH]=m_contourf(lon,lat,double(eta)',[-10000:1000:1000 1000:100:0],'edgecolor','none');
 hold on
 caxis([-10000 0])
-m_grid('linestyle','none','tickdir','out','linewidth',3);
+m_grid('linestyle','none','tickdir','out','linewidth',3,'fontsize',16);
 
-m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color','b')%[.6 .6 .6]
+% m_plot(rdata(:,1),rdata(:,2),'-','LineWidth',1,'color','b')%[.6 .6 .6]
+m_patch(rdata(:,1),rdata(:,2),'b','linestyle','-','LineWidth',1,'edgecolor','b','facecolor','none')%[.6 .6 .6]
 
 coldef_land = [0 0.3059 0.1059];
 m_gshhs_i('patch',coldef_land,'edgecolor','k')
@@ -73,30 +74,38 @@ for ii=1:size(IROC_metaData,1)
     if ismember(IROC_metaData.Index{ii},{'BICC_110','BICC_111','BICC_121','BICC_131',...
             'BICC_141','BICC_151','BICC_161','BICC_349'})
         txtT = IROC_metaData.Index{ii};
-        if ismember(IROC_metaData.Index{ii},{'BICC_121','BICC_141'})
+        if ismember(IROC_metaData.Index{ii},{'BICC_141'})
             posT = [LONT(ii),LATT(ii)+0.7];
-            if ismember(IROC_metaData.Index{ii},{'BICC_121'})
-                tHal = 'center';
-            else
-                tHal = 'right';
-            end
+            tHal = 'right';
+            tVal = 'bottom';
+        elseif ismember(IROC_metaData.Index{ii},{'BICC_121'})
+            posT = [LONT(ii)+2,LATT(ii)-1.5];
+            tHal = 'center';
+            tVal = 'bottom';
+        elseif ismember(IROC_metaData.Index{ii},{'BICC_111'})
+        posT = [LONT(ii)+0.8,LATT(ii)+0.5];
+        tHal = 'left';
         tVal = 'bottom';
-        elseif ismember(IROC_metaData.Index{ii},{'BICC_110','BICC_131'})
-            posT = [LONT(ii),LATT(ii)+1.7];
-        tHal = 'center';
-        tVal = 'bottom';
+        elseif ismember(IROC_metaData.Index{ii},{'BICC_110'})
+            posT = [LONT(ii)+1,LATT(ii)];
+            tHal = 'left';
+            tVal = 'middle';
+        elseif ismember(IROC_metaData.Index{ii},{'BICC_131'})
+            posT = [LONT(ii),LATT(ii)+2.5];
+            tHal = 'center';
+            tVal = 'bottom';
         elseif ismember(IROC_metaData.Index{ii},{'BICC_161','BICC_349','BICC_111'})
             posT = [LONT(ii)+1,LATT(ii)];
-        tHal = 'left';
-        tVal = 'middle';
+            tHal = 'left';
+            tVal = 'middle';
         elseif ismember(IROC_metaData.Index{ii},{'BICC_151'})
-            posT = [LONT(ii)-1,LATT(ii)+0.5];
-        tHal = 'right';
-        tVal = 'bottom';
+            posT = [LONT(ii)-0.8,LATT(ii)+0.1];
+            tHal = 'right';
+            tVal = 'bottom';
         else
             posT = [LONT(ii),LATT(ii)-0.1];
-        tHal = 'center';
-        tVal = 'bottom';
+            tHal = 'center';
+            tVal = 'bottom';
         end
     elseif ismember(IROC_metaData.Index{ii},{'BICC_001'})
         txtT = {'BICC_001';'BICC_002';'BICC_003';'BICC_004'};
@@ -104,18 +113,18 @@ for ii=1:size(IROC_metaData,1)
         tHal = 'right';
         tVal = 'bottom';
     elseif ismember(IROC_metaData.Index{ii},{'BICC_122'})
+            posT = [LONT(ii)+0.2,LATT(ii)+0.5];
+            tHal = 'center';
+            tVal = 'bottom';
         txtT = {'BICC_122';'BICC_123'};
-        posT = [LONT(ii)+1,LATT(ii)-1];
-        tHal = 'center';
-        tVal = 'top';
-    elseif ismember(IROC_metaData.Index{ii},{'BICC_131','BICC_131'})
-        txtT = {'BICC_132'};
-        posT = [LONT(ii)+1,LATT(ii)-3];
-        tHal = 'center';
-        tVal = 'top';
+        %     elseif ismember(IROC_metaData.Index{ii},{'BICC_131','BICC_131'})
+        %         txtT = {'BICC_132'};
+        %         posT = [LONT(ii)+1,LATT(ii)-3];
+        %         tHal = 'center';
+        %         tVal = 'top';
     elseif ismember(IROC_metaData.Index{ii},{'BICC_172'})
         txtT = {'BICC_172';'BICC_173';'BICC_174';'BICC_175' };
-        posT = [LONT(ii)-3.5,LATT(ii)];
+        posT = [LONT(ii)-3.5,LATT(ii)+0.5];
         tHal = 'right';
         tVal = 'middle';
     elseif ismember(IROC_metaData.Index{ii},{'BICC_211'})
@@ -135,7 +144,7 @@ for ii=1:size(IROC_metaData,1)
         tVal = 'top';
     elseif ismember(IROC_metaData.Index{ii},{'BICC_312'})
         txtT = {'BICC_312';'BICC_313'};
-        posT = [LONT(ii)-1,LATT(ii)-1];
+        posT = [LONT(ii),LATT(ii)-0.7];
         tHal = 'right';
         tVal = 'top';
     elseif ismember(IROC_metaData.Index{ii},{'BICC_321'})
@@ -162,7 +171,7 @@ for ii=1:size(IROC_metaData,1)
         continue
     end
     m_plot([LONT(ii) posT(1)],[LATT(ii) posT(2)],'k-')
-    m_text(posT(1),posT(2),txtT,...
+    m_text(posT(1),posT(2),txtT,'fontsize',14,...
         'interpreter','none','color','r','backgroundcolor','w',...
         'edgecolor','k','verticalalignment',tVal','horizontalalignment',tHal)
     clear posT tVal tHal
@@ -171,7 +180,7 @@ end
 ax=m_contfbar(1,[.5 .8],CS,CH);
 title(ax,{'Depth (m)','',''}); % Move up by inserting a blank line
 
-set(gcf,'position',get(0, 'Screensize'),'color','w', 'MenuBar', 'none')
+set(gcf,'position',IROC_2025_fun_framesize(),'color','w', 'MenuBar', 'none')
 F    = getframe(gcf);
 imwrite(F.cdata,[ 'IROC_2025_StationMap_',regTLA,'.png'])
 % set(gcf,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...
