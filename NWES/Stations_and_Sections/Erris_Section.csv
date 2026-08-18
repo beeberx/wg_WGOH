@@ -1,0 +1,7 @@
+Station Number,Station Name,Degrees Latitude,Minutes Latitude,Hemisphere Latitude,Degrees Longitude,Minutes Longitude,Hemisphere Longitude,Decimal Degrees Latitude,Decimal Degrees Longitude,Depth,Distance
+1,Erris_ES1,54,17.70,N,10,3.27,W,54.295,-10.055,,0.00
+2,Erris_ES2,54,21.99,N,10,9.03,W,54.367,-10.151,,5.45
+3,Erris_ES3,54,28.04,N,10,16.94,W,54.467,-10.282,,7.61
+4,Erris_ES4,54,33.12,N,10,23.57,W,54.552,-10.393,,6.38
+5,Erris_ES5,54,40.83,N,10,33.82,W,54.680,-10.564,,9.74
+6,Erris_ES6,54,47.95,N,10,43.29,W,54.799,-10.721,,8.98

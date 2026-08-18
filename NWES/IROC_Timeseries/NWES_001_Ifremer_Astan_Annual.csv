@@ -1,0 +1,38 @@
+# Index:,NWES_001,,,,,
+# Station Description:,Point 33 - Astan,,,,,
+# Region Code:,NWES,,,,,
+# Latitude:,48.78 N,,,,,
+# Longitude:,3.94 W,,,,,
+# Detailed Location (WKT):,,,,,,
+# Measurement Depth/Range:,2 m,,,,,
+# Sampling Frequency:,,,,,,
+# Long Term Averaging Period:,1998-2010,1998-2010,,,,
+# Long Term Mean:,12.85,35.204,,,,
+# Long Term Standard Deviation:,0.30,0.112,,,,
+# Calculation Methodology:,"Data deseasoned",,,,,
+# Data Source:,CNRS - Observatoire Oceanologique de Roscoff - France,,,,,
+# Contact Name (email):,Pascal Morin (pmorin@sb-roscoff.fr),,,,,
+# Notes:,,,,,,
+# Reference:,,,,,,
+# DOI:,,,,,,
+# Website:,,,,,,
+Year,Temperature °C,Temperature Anomaly °C,Temperature Anomaly Normalised °C,Salinity,Salinity Anomaly,Salinity Anomaly Normalised
+1998,12.90,0.05,0.17,35.307,0.103,0.920
+1999,13.07,0.23,0.75,35.283,0.078,0.698
+2000,12.54,-0.31,-1.02,35.113,-0.092,-0.819
+2001,13.20,0.35,1.18,34.932,-0.273,-2.434
+2002,12.90,0.05,0.18,35.183,-0.021,-0.189
+2003,12.94,0.09,0.30,35.093,-0.112,-0.996
+2004,12.96,0.12,0.38,35.207,0.002,0.020
+2005,12.76,-0.09,-0.28,35.323,0.118,1.057
+2006,12.58,-0.26,-0.87,35.277,0.073,0.650
+2007,13.40,0.56,1.86,35.341,0.137,1.221
+2008,12.88,0.03,0.11,35.204,0.000,-0.003
+2009,12.61,-0.24,-0.80,35.202,-0.002,-0.018
+2010,12.26,-0.59,-1.95,35.192,-0.012,-0.106
+2011,12.86,0.02,0.06,35.302,0.097,0.869
+2012,12.96,0.11,0.38,35.335,0.131,1.170
+2013,12.60,-0.25,-0.83,35.217,0.013,0.112
+2014,13.32,0.48,1.58,35.144,-0.060,-0.537
+2015,13.16,0.31,1.04,35.256,0.051,0.458
+2016,13.03,0.18,0.61,35.220,0.040,0.357

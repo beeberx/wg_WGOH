@@ -1,0 +1,6 @@
+Box Name: 11 Skag-ncw
+Data Source: SGMD
+Data Contact: Bee Berx (barbara.berx@gov.scot); Berit Rabe (berit.rabe@gov.scot)
+Comment/Note (incl. method description): HydCem Database Extraction - everything in polygon described by boundaries; exclude data from _db.hyd
+Cruise ID / Site ID,Station Name,Year,Month,Day,Hour,Minute,Dec Lat,Dec Lon,Sounding,Pressure,Temp,Temp Flag,Sal,Sal Flag
+SC196509, 238,1965,10,16,08,35,  57.9167,   8.1667, 509,   0,   13.350,  1,   31.670,  1
