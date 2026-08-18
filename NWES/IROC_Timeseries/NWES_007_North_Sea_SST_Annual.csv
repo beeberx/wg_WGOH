@@ -1,0 +1,76 @@
+# Index:,NWES_007,,
+# Station Description:,North Sea SST,,
+# Region Code:,NWES,,
+# Latitude:,55.99 N,,
+# Longitude:,3.201 E,,
+# Detailed Location (WKT):,"POLYGON((-3.95 51.17, 10.36 51.17, 10.36 60.81, -3.95 60.81, -3.95 51.17))",,
+# Measurement Depth/Range:,Surface,,
+# Sampling Frequency:,,,
+# Long Term Averaging Period:,1991-2020,,
+# Long Term Mean:,10.52,,
+# Long Term Standard Deviation:,0.45,,
+# Calculation Methodology:,"Data is collected from variable number of stations within a fixed area.,Data is averaged from 0 - 5 m.,Merged data hourly to weekly (in-situ and remote sensing).,The annual calculation is an annual mean,Seasonal cycle has not been removed.",,
+# Data Source:,BSH - German Federal Maritime and Hydrographic Agency,,
+# Contact Name (email):,Dagmar Kieke (dagmar.kieke@bsh.de),,
+# Notes:,,,
+# Reference:,"Loewe",,
+# DOI:,,,
+# Website:,https://www.bsh.de/EN/DATA/Climate-and-Sea/Sea_temperatures/Sea_surface_temperatures/sea_surface_temperatures_node.html,,
+Year,Temperature °C,Temperature Anomaly °C,Temperature Anomaly Normalised °C
+1969,9.70,-0.82,-1.82
+1970,9.40,-1.12,-2.49
+1971,10.01,-0.51,-1.13
+1972,9.80,-0.72,-1.60
+1973,10.06,-0.46,-1.02
+1974,10.03,-0.49,-1.09
+1975,10.28,-0.24,-0.53
+1976,10.16,-0.36,-0.80
+1977,9.70,-0.82,-1.82
+1978,9.45,-1.07,-2.38
+1979,8.90,-1.62,-3.60
+1980,9.63,-0.89,-1.98
+1981,9.46,-1.06,-2.36
+1982,9.83,-0.69,-1.53
+1983,9.84,-0.68,-1.51
+1984,9.78,-0.74,-1.64
+1985,9.37,-1.15,-2.56
+1986,9.16,-1.36,-3.02
+1987,9.33,-1.19,-2.64
+1988,10.21,-0.31,-0.69
+1989,10.68,0.16,0.36
+1990,10.71,0.19,0.42
+1991,10.02,-0.50,-1.11
+1992,10.32,-0.20,-0.44
+1993,9.58,-0.94,-2.09
+1994,10.07,-0.45,-1.00
+1995,10.50,-0.02,-0.04
+1996,9.34,-1.18,-2.62
+1997,10.52,0.00,0.00
+1998,10.27,-0.25,-0.56
+1999,10.69,0.17,0.38
+2000,10.40,-0.12,-0.27
+2001,10.44,-0.08,-0.18
+2002,10.94,0.42,0.93
+2003,11.00,0.48,1.07
+2004,10.73,0.21,0.47
+2005,10.52,0.00,0.00
+2006,10.96,0.44,0.98
+2007,10.91,0.39,0.87
+2008,10.75,0.23,0.51
+2009,10.60,0.08,0.18
+2010,9.95,-0.57,-1.27
+2011,10.38,-0.14,-0.31
+2012,10.36,-0.16,-0.36
+2013,9.99,-0.53,-1.18
+2014,11.44,0.92,2.04
+2015,10.59,0.07,0.16
+2016,10.99,0.47,1.04
+2017,10.84,0.32,0.71
+2018,10.68,0.16,0.36
+2019,10.83,0.31,0.69
+2020,10.96,0.44,0.98
+2021,10.67,0.15,0.33
+2022,11.23,0.71,1.58
+2023,11.10,0.58,1.29
+2024,11.06,0.54,1.20
+2025,11.58,1.06,2.36

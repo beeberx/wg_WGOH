@@ -32,5 +32,13 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 
+# WGOH
+*.png
+*.jpg
+*.asv
+
 # IROC_2025 
 /RegionBoundaries/Figures/*.*
+
+# NWES
+/NWES/DataCallSubmissions/BSH_stations/
