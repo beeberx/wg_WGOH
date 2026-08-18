@@ -32,6 +32,9 @@ for ff=1:size(flist,1)
         if ~isempty(regexpi(fname,'IROC'))
             set(h,'LineStyle','none','markersize',5,'markerfacecolor','k','markeredgecolor','r')
         end
+        if ~isempty(regexpi(fname,'Golden'))
+            set(h,'LineStyle','none','markersize',4,'markerfacecolor','k','markeredgecolor','b')
+        end
         if ss==1;
             LEGH=cat(1,LEGH,h);
             LEGT = cat(1,LEGT,cellstr(fname(1:regexpi(fname,'.csv')-1)));
@@ -41,12 +44,19 @@ for ff=1:size(flist,1)
 end;clear ff
 
 Boxes = readtable('../BoxDefs_NWES.csv');
-
 for rr=1:size(Boxes,1)
 p1 = m_patch([Boxes{rr,'p1_lon'} Boxes{rr,'p2_lon'} Boxes{rr,'p3_lon'} Boxes{rr,'p4_lon'} Boxes{rr,'p1_lon'}],...
     [Boxes{rr,'p1_lat'} Boxes{rr,'p2_lat'} Boxes{rr,'p3_lat'} Boxes{rr,'p4_lat'} Boxes{rr,'p1_lat'}],'r');
 set(p1,'facecolor','none','edgecolor','r','linewidth',2)
 m_text(Boxes{rr,'p2_lon'}+0.1,Boxes{rr,'p2_lat'}-0.05,num2str(Boxes{rr,'BoxNumber'}),'color','r')
+end
+
+EhrichBoxes = readtable('../BoxDefs_Ehrich.csv');
+for rr=1:size(EhrichBoxes,1)
+p1 = m_patch([EhrichBoxes{rr,'p1_lon'} EhrichBoxes{rr,'p2_lon'} EhrichBoxes{rr,'p3_lon'} EhrichBoxes{rr,'p4_lon'} EhrichBoxes{rr,'p1_lon'}],...
+    [EhrichBoxes{rr,'p1_lat'} EhrichBoxes{rr,'p2_lat'} EhrichBoxes{rr,'p3_lat'} EhrichBoxes{rr,'p4_lat'} EhrichBoxes{rr,'p1_lat'}],'r');
+set(p1,'facecolor','none','edgecolor','b','linewidth',1.5)
+m_text(EhrichBoxes{rr,'p2_lon'}+0.1,EhrichBoxes{rr,'p2_lat'}-0.05,EhrichBoxes{rr,'BoxNumber'},'color','b')
 end
 
 m_grid('xtick',[-20:5:10],'ytick',[50:5:65],...
@@ -55,4 +65,4 @@ legend(LEGH,LEGT,'location','southoutside','NumColumns',3,'interpreter','none')
 
 set(gcf,'paperorientation','landscape','papertype','a4','paperpositionmode','auto',...
     'paperunits','centimeters','paperposition',[0.6 0.6 28.4 19.7])
-print(gcf, '-dpng', '-r300', 'WGOH-NWES_all_stations_and_boxes.png')  
+print(gcf, '-dpng', '-r300', 'WGOH-NWES_all_stations_and_boxes2.png')  
