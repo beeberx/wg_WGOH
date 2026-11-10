@@ -1,0 +1,384 @@
+Yes. Below is a complete working Shiny application that implements the "static infographic background + icon overlays + hover popups" approach.
+
+Assumptions
+
+Your files are:
+
+app.R
+
+www/
+│
+├── Basemap.svg
+├── icon1.png
+└── icon2.png
+
+data/
+└── Highlights2025.csv
+
+
+The CSV contains:
+
+title,description,icon,wkt
+Marine Heatwave,Record temperatures observed,icon1.png,"POINT(-4.5 58.0)"
+Salinity,Freshening signal detected,icon2.png,"POINT(-2.0 56.5)"
+
+
+where:
+
+Column	Meaningtitle	Short title
+description	Popup text
+icon	icon1.png or icon2.png
+wkt	POINT(lon lat)
+Required Packages
+install.packages(c(
+  "shiny",
+  "leaflet",
+  "sf",
+  "dplyr",
+  "htmltools"
+))
+
+app.R
+library(shiny)
+library(leaflet)
+library(sf)
+library(dplyr)
+library(htmltools)
+
+# ==================================================
+# LOAD DATA
+# ==================================================
+
+highlights <- read.csv(
+  "data/Highlights2025.csv",
+  stringsAsFactors = FALSE
+)
+
+# Convert WKT to sf
+
+highlights_sf <- st_as_sf(
+  highlights,
+  wkt = "wkt",
+  crs = 4326
+)
+
+coords <- st_coordinates(highlights_sf)
+
+highlights_sf$lon <- coords[,1]
+highlights_sf$lat <- coords[,2]
+
+# ==================================================
+# ICON DEFINITIONS
+# ==================================================
+
+make_icon <- function(iconfile){
+
+  icons(
+    iconUrl = file.path(iconfile),
+    iconWidth = 40,
+    iconHeight = 40
+  )
+
+}
+
+# ==================================================
+# UI
+# ==================================================
+
+ui <- fluidPage(
+
+  tags$head(
+
+    tags$style(HTML("
+
+      body {
+        margin:0;
+        padding:0;
+        overflow:hidden;
+      }
+
+      #map {
+        height:100vh !important;
+      }
+
+      .leaflet-tooltip {
+        background-color:white;
+        border:1px solid #999;
+        border-radius:6px;
+        padding:8px;
+        font-size:14px;
+      }
+
+    "))
+
+  ),
+
+  leafletOutput("map")
+)
+
+# ==================================================
+# SERVER
+# ==================================================
+
+server <- function(input, output, session){
+
+  output$map <- renderLeaflet({
+
+    leaflet(
+      options = leafletOptions(
+        zoomControl = FALSE,
+        dragging = FALSE,
+        doubleClickZoom = FALSE,
+        scrollWheelZoom = FALSE,
+        boxZoom = FALSE,
+        keyboard = FALSE,
+        touchZoom = FALSE
+      )
+    ) %>%
+
+      addCRS(
+        leafletCRS(
+          crsClass = "L.CRS.Simple"
+        )
+      )
+
+  })
+
+  observe({
+
+    bounds <- list(
+      xmin = -10,
+      xmax = 5,
+      ymin = 50,
+      ymax = 62
+    )
+
+    leafletProxy("map") %>%
+
+      clearImages() %>%
+
+      addWMSTiles(
+        baseUrl = ""
+      )
+
+  })
+
+  observe({
+
+    proxy <- leafletProxy("map")
+
+    proxy %>%
+      clearMarkers()
+
+    for(i in seq_len(nrow(highlights_sf))){
+
+      row <- highlights_sf[i, ]
+
+      tooltip_text <- HTML(
+        paste0(
+          "<b>",
+          row$title,
+          "</b><br>",
+          row$description
+        )
+      )
+
+      proxy %>%
+        addMarkers(
+          lng = row$lon,
+          lat = row$lat,
+
+          icon = icons(
+            iconUrl = row$icon,
+            iconWidth = 40,
+            iconHeight = 40
+          ),
+
+          label = tooltip_text,
+
+          labelOptions = labelOptions(
+            noHide = FALSE,
+            direction = "top",
+            opacity = 0.95
+          )
+        )
+
+    }
+
+  })
+
+}
+
+shinyApp(ui, server)
+
+Better Version Using Basemap.svg Directly
+
+The previous example still uses Leaflet's mapping engine. For a true infographic, I would actually recommend rendering the SVG directly and plotting icons over it.
+
+This avoids GIS entirely and gives a much cleaner result.
+
+Folder Structure
+app.R
+
+www/
+├── Basemap.svg
+├── icon1.png
+├── icon2.png
+
+data/
+└── Highlights2025.csv
+
+
+CSV:
+
+title,description,icon,x,y
+Marine Heatwave,Record temperatures observed,icon1.png,45,30
+Salinity,Freshening signal detected,icon2.png,62,55
+
+
+where x and y are percentages across the image.
+
+app.R
+library(shiny)
+
+highlights <- read.csv(
+  "data/Highlights2025.csv",
+  stringsAsFactors = FALSE
+)
+
+ui <- fluidPage(
+
+  tags$head(
+
+    tags$style(HTML("
+
+      body{
+        margin:0;
+      }
+
+      .container-map{
+        position:relative;
+        width:100%;
+        max-width:1400px;
+        margin:auto;
+      }
+
+      .basemap{
+        width:100%;
+      }
+
+      .icon{
+        position:absolute;
+        width:50px;
+        height:50px;
+        cursor:pointer;
+      }
+
+      .tooltip{
+        visibility:hidden;
+
+        position:absolute;
+
+        background:white;
+        border:1px solid #bbb;
+
+        padding:10px;
+        border-radius:5px;
+
+        width:250px;
+
+        z-index:1000;
+      }
+
+      .icon:hover + .tooltip{
+        visibility:visible;
+      }
+
+    "))
+  ),
+
+  uiOutput("infographic")
+
+)
+
+server <- function(input, output){
+
+  output$infographic <- renderUI({
+
+    elems <- list(
+
+      tags$img(
+        src = "Basemap.svg",
+        class = "basemap"
+      )
+
+    )
+
+    for(i in seq_len(nrow(highlights))){
+
+      row <- highlights[i,]
+
+      elems <- append(
+        elems,
+        list(
+
+          tags$img(
+            src = row$icon,
+            class = "icon",
+
+            style = paste0(
+              "left:", row$x, "%;",
+              "top:", row$y, "%;"
+            )
+          ),
+
+          tags$div(
+            class = "tooltip",
+
+            style = paste0(
+              "left:", row$x + 2, "%;",
+              "top:", row$y + 2, "%;"
+            ),
+
+            tags$b(row$title),
+
+            tags$br(),
+
+            row$description
+          )
+
+        )
+      )
+
+    }
+
+    tags$div(
+      class = "container-map",
+      elems
+    )
+
+  })
+
+}
+
+shinyApp(ui, server)
+
+My recommendation
+
+For an annual infographic similar to the California Current Ecosystem example, I would not use Leaflet at all.
+
+Instead:
+
+Create a publication-quality Basemap.svg in QGIS or Illustrator.
+Store annual highlights in a CSV with WKT geometry.
+Convert the WKT locations once into SVG-relative x/y positions.
+Use the second approach (pure HTML/CSS/Shiny overlay).
+
+That gives you:
+
+Complete control of appearance.
+Easy annual updates.
+Responsive web layout.
+Hover tooltips.
+Git-friendly files.
+Much closer visual similarity to the California Current infographic.
