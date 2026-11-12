@@ -1,0 +1,5 @@
+title,wkt,icon_file,highlight_text
+"Highlight 1","POINT (-25 56.6)","icons/T_icon.png","It was hot here."
+"Highlight 2","POINT (-10 47)","icons/S_icon.png,"It was salty here."
+"Highlight 3","POINT (-70 47)",icons/I_icon.png,"It was salty here."
+"Highlight 4","POINT (-5 47)",icons/C_icon.png,"It was salty here."
