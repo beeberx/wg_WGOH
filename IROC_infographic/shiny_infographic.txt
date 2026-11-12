@@ -1,0 +1,296 @@
+Absolutely. For your use case, Shiny may actually be easier than building a custom JavaScript/D3 site, especially if you're already working in R.
+
+What you describe is a very natural fit for:
+
+A fixed background map
+A small table of icon locations updated annually
+Hover popups/tooltips
+Deployment to a website
+
+You could build the entire thing with:
+
+Shiny
+leaflet
+sf
+htmlwidgets
+shinyBS or bslib (optional styling)
+Option 1: Simple Leaflet-Based Shiny App (Recommended)
+
+Workflow:
+
+Background map
+       ↓
+Year selector
+       ↓
+Load icon locations for selected year
+       ↓
+Display icons
+       ↓
+Hover popup shows information
+
+
+Example data table:
+
+Year	Indicator	Lat	Lon	Icon	Popup2025	Marine Heatwave	57	-2	heatwave.png	Record summer temperatures
+2025	Salinity	60	-5	salinity.png	Freshening observed
+2026	Heatwave	58	-3	heatwave.png	Persistent anomaly
+
+Stored as CSV:
+
+year,indicator,lat,lon,icon,popup
+2025,Marine Heatwave,57,-2,heatwave.png,Record temperatures
+2026,Salinity,60,-5,salinity.png,Freshening signal
+
+
+Shiny reads the chosen year and plots only those records.
+
+Example Leaflet Approach
+library(shiny)
+library(leaflet)
+library(dplyr)
+
+icons <- awesomeIcons(
+  icon = "fire",
+  library = "fa",
+  markerColor = "red"
+)
+
+ui <- fluidPage(
+
+  selectInput(
+    "year",
+    "Year",
+    choices = c(2025, 2026)
+  ),
+
+  leafletOutput("map", height = "800px")
+)
+
+server <- function(input, output) {
+
+  output$map <- renderLeaflet({
+
+    leaflet() %>%
+      addTiles() %>%
+      setView(-4, 57, zoom = 5)
+
+  })
+
+  observe({
+
+    dat <- climate_data %>%
+      filter(year == input$year)
+
+    leafletProxy("map") %>%
+      clearMarkers() %>%
+      addMarkers(
+        lng = dat$lon,
+        lat = dat$lat,
+        popup = dat$popup
+      )
+
+  })
+
+}
+
+shinyApp(ui, server)
+
+Custom Icons
+
+You are not restricted to standard markers.
+
+For example:
+
+icons(
+  iconUrl = dat$icon,
+  iconWidth = 40,
+  iconHeight = 40
+)
+
+
+where:
+
+www/
+ ├── heatwave.png
+ ├── fish.png
+ ├── storm.png
+ ├── salinity.png
+
+
+You could create a bespoke MCCIP-style icon set.
+
+Examples:
+
+🔥 Marine heatwave
+🌊 Sea-level rise
+🧂 Salinity
+🐟 Species redistribution
+🌪 Storminess
+🪸 Habitat impacts
+Hover Rather than Click
+
+Leaflet defaults to click popups.
+
+For hover tooltips:
+
+addMarkers(
+  lng = ~lon,
+  lat = ~lat,
+  label = ~popup
+)
+
+
+or
+
+addLabelOnlyMarkers()
+
+
+Then the text appears on hover.
+
+This often feels more like an infographic than a map.
+
+Option 2: Plot on a Static Infographic Background
+
+This may actually be closer to the California Current example.
+
+Instead of a GIS map, use:
+
+Custom UK Shelf Seas SVG
+         +
+Icon overlays
+         +
+Hover events
+
+
+Packages:
+
+shiny
+plotly
+ggiraph
+
+
+or
+
+htmltools
+shiny
+
+
+You create a beautiful background image in:
+
+QGIS
+Illustrator
+Inkscape
+
+and simply position icons using x/y coordinates.
+
+Example:
+
+x = 450
+y = 210
+
+
+rather than latitude and longitude.
+
+Advantages:
+
+✅ Much prettier
+
+✅ Full design freedom
+
+✅ Easier to reproduce a polished infographic appearance
+
+✅ No GIS complexity
+
+This is honestly the route I'd choose for an annual climate communication product.
+
+Annual Updating
+
+You could structure the data as:
+
+data/
+ ├── indicators_2024.csv
+ ├── indicators_2025.csv
+ ├── indicators_2026.csv
+
+
+or a single table:
+
+year,x,y,icon,title,text
+2025,400,220,mhw.png,Marine Heatwave,...
+2026,420,210,mhw.png,Marine Heatwave,...
+
+
+Then the year selector simply reloads the appropriate layer.
+
+Updating each year becomes:
+
+Edit CSV
+Add/remove icons
+Deploy
+
+No code changes required.
+
+Hosting
+
+You have several options:
+
+GitHub Pages
+
+Not directly for Shiny.
+
+GitHub Pages can only host:
+
+HTML
+CSS
+JavaScript
+
+not a live Shiny server.
+
+shinyapps.io
+
+Probably easiest.
+
+Free tier available.
+
+Typical workflow:
+
+rsconnect::deployApp()
+
+
+Your app becomes:
+
+https://yourname.shinyapps.io/marine-climate-infographic
+
+Posit Connect
+
+If your organisation has access.
+
+Self-hosted Shiny Server
+
+Possible at NOC or partner institutions if IT support exists.
+
+What I'd do for an MCCIP-style product
+
+For something like:
+
+UK shelf seas
+Marine heatwaves
+Salinity
+Species shifts
+Storm impacts
+Ocean acidification
+
+I would use:
+
+QGIS-made SVG background
+          +
+Shiny
+          +
+hoverable PNG/SVG icons
+          +
+year selector
+          +
+tooltip panels
+
+
+That gives you nearly all the flexibility of the California Current infographic while keeping the annual maintenance to editing a single CSV file of icon locations and text. It's a very manageable workflow for a scientific reporting product that gets refreshed every year.
